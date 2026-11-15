@@ -5,7 +5,8 @@
 
 # ── Old / Reference ──────────────────────────────────────────
 old_docs/
-
+docs/
+screen/
 # ── Tool-generated ───────────────────────────────────────────
 .codegraph/
 
