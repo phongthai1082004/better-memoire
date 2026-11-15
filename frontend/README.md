@@ -101,7 +101,7 @@ validation messages come back in Vietnamese or English.
   from `docs/FRONTEND.md` are not part of this slice.
 - Google OAuth is configured with a real web client. A completed Google account login has
   not been verified in this workspace; the start route, PKCE cookies, consent redirect and
-  callback error paths are verified. See `docs/GOOGLE_SIGNIN_TEST.md`.
+  callback error paths are verified. See `docs/testing/GOOGLE_SIGNIN_TEST.md`.
 - Spanish is not in the dictionary yet, even though the old API reference mentions it.
 
 ## Design system

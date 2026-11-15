@@ -9,7 +9,7 @@ export function FinalCta({ copy }: { copy: Dictionary["cta"] }) {
     <section className="py-16 md:py-24">
       <div className="page-shell">
         <Reveal>
-          <div className="panel panel-outline panel-sheen grid gap-8 px-6 py-12 md:grid-cols-[1.2fr_0.8fr] md:items-end md:px-12 md:py-16">
+          <div className="vignette-panel panel panel-outline grid gap-8 px-6 py-12 md:grid-cols-[1.2fr_0.8fr] md:items-end md:px-12 md:py-16">
             <h2 className="h-section relative max-w-[14ch]">{copy.title}</h2>
             <div className="relative md:pb-1">
               <p className="max-w-[34ch] text-body">{copy.body}</p>

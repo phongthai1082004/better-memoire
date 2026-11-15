@@ -9,7 +9,9 @@ const vi = {
   nav: {
     books: "Sách",
     materials: "Chất liệu",
+    options: "Khổ sách",
     process: "Cách làm",
+    contact: "Viết cho xưởng",
     signIn: "Đăng nhập",
     signOut: "Đăng xuất",
     start: "Bắt đầu một cuốn sách",
@@ -23,8 +25,9 @@ const vi = {
   hero: {
     title: "Ngày đẹp,",
     accent: "lên kệ.",
+    byline: "Xưởng Better Memoire, một sáng thứ Bảy.",
     subtitle:
-      "Tự thiết kế sách ảnh từ ký ức của bạn. In trên giấy dày và giao đến tận cửa.",
+      "Tự thiết kế sách ảnh từ ký ức của bạn. Chọn những bức ảnh đã có trong điện thoại, viết vài dòng, sắp xếp cho đến khi vừa ý. Chúng tôi in trên giấy dày, kiểm tra từng cuốn bằng tay và giao đến tận cửa trong túi bảo vệ.",
     primary: "Bắt đầu một cuốn sách",
     secondary: "Xem các cuốn sách",
     caption: "Cuốn sách cuối tuần.",
@@ -32,7 +35,9 @@ const vi = {
   materials: {
     title: "Được làm để cầm trên tay.",
     intro:
-      "Bìa vải, giấy mờ dày và gáy mở phẳng. Đủ đẹp để nằm lại trên bàn trà.",
+      "Bìa vải, giấy mờ dày và gáy mở phẳng. Chúng tôi chọn giấy bằng tay, in thử từng cuốn và giữ màu ấm như một tấm ảnh cũ. Đủ đẹp để nằm lại trên bàn trà, đủ bền để đi cùng bạn qua nhiều năm.",
+    detail:
+      "Mỗi cuốn in theo đợt nhỏ. Gáy được kiểm tra, bìa được gấp tay và từng trang được lật qua trước khi rời xưởng.",
     bindingTitle: "Gáy mở phẳng",
     bindingBody:
       "Trang đôi liền mạch. Không phải vật lộn với gáy sách để nhìn trọn bức ảnh.",
@@ -42,9 +47,19 @@ const vi = {
     coverCaption: "Bìa bọc vải, in theo từng đợt nhỏ.",
   },
   books: {
-    title: "Bắt đầu từ một câu chuyện.",
+    title: "Cuốn sách của bạn.",
     intro:
-      "Bắt đầu với một cuốn trống hoặc mượn cấu trúc có sẵn. Dù thế nào, ảnh là của bạn.",
+      "Hầu hết mọi người bắt đầu với một xấp ảnh trong điện thoại. Chọn một câu chuyện dưới đây, chúng tôi sẽ dựng khung và cho bạn thấy nó thành sách như thế nào.",
+    eyebrow: "Câu chuyện",
+    tabsNote: "Mỗi câu chuyện là một cách bắt đầu. Bạn luôn có thể đổi thứ tự trang sau.",
+    facts: [
+      { value: "24–40", label: "Trang đôi", note: "In hai mặt, mở phẳng." },
+      { value: "170", label: "Gsm", note: "Giấy mờ, ấm, không chói." },
+      { value: "Vải", label: "Bìa", note: "Bọc tay từng cuốn." },
+      { value: "5–7", label: "Ngày", note: "Giao đến tận cửa." },
+    ],
+    cta: "Bắt đầu với câu chuyện này",
+    signature: "Xưởng Better Memoire",
     items: [
       { title: "Đám cưới", note: "Lời thề, bàn tay và bàn tiệc sau đó." },
       { title: "Năm đầu tiên", note: "Những điều nhỏ bạn nghĩ mình sẽ nhớ." },
@@ -54,7 +69,10 @@ const vi = {
   },
   process: {
     title: "Từ cuộn ảnh đến bàn trà.",
-    intro: "Ba bước nhẹ nhàng. Không cần phần mềm thiết kế, không sợ trang giấy trắng.",
+    intro:
+      "Ba bước nhẹ nhàng. Không cần phần mềm thiết kế, không sợ trang giấy trắng. Bạn bắt đầu từ ảnh, chúng tôi lo phần giấy, gáy và màu in.",
+    detail:
+      "Nếu chưa chắc, cứ gửi một xấp ảnh. Chúng tôi sẽ gợi ý nhịp trang trước khi bạn đặt in.",
     steps: [
       {
         title: "Chọn kích thước",
@@ -70,6 +88,97 @@ const vi = {
       },
     ],
   },
+  options: {
+    eyebrow: "Các lựa chọn",
+    title: "Mọi khổ sách.",
+    intro:
+      "Không có khổ nào giống hệt nhau, và không có khổ nào gọi là “cao cấp”. Chọn một khổ để xem ảnh, rồi lật mặt sau để đọc thông số và điều chúng tôi thật lòng khuyên.",
+    flip: "Lật mặt sau",
+    flipBack: "Lật lại ảnh",
+    cta: "Bắt đầu với khổ này",
+    labels: {
+      format: "Khổ",
+      pages: "Trang",
+      paper: "Giấy",
+      cover: "Bìa",
+      delivery: "Giao",
+      honestly: "Thật lòng",
+    },
+    items: [
+      {
+        id: "pocket",
+        group: "Nhỏ gọn",
+        name: "Bỏ túi",
+        note: "Một cuốn nhỏ cho ngăn kéo hoặc túi áo.",
+        size: "10 × 15 cm",
+        pages: "32–48",
+        paper: "Mờ 170gsm",
+        cover: "Vải",
+        delivery: "5–7 ngày",
+        honest: "Đẹp để mang theo. Nếu muốn ảnh lớn, hãy chọn khổ tiếp theo.",
+      },
+      {
+        id: "square-small",
+        group: "Nhỏ gọn",
+        name: "Vuông nhỏ",
+        note: "Vừa một tay, đủ cho một chuyến đi.",
+        size: "15 × 15 cm",
+        pages: "40–56",
+        paper: "Mờ 170gsm",
+        cover: "Vải",
+        delivery: "5–7 ngày",
+        honest: "Khổ dễ thương nhất. Hơi nhỏ cho ảnh nhóm đông người.",
+      },
+      {
+        id: "square",
+        group: "Tiêu chuẩn",
+        name: "Vuông",
+        note: "Khổ cân bằng nhất cho ảnh đời thường.",
+        size: "20 × 20 cm",
+        pages: "48–64",
+        paper: "Mờ 170gsm",
+        cover: "Vải",
+        delivery: "5–7 ngày",
+        honest: "Lựa chọn an toàn. Đây là khổ chúng tôi làm nhiều nhất.",
+      },
+      {
+        id: "portrait",
+        group: "Tiêu chuẩn",
+        name: "Dọc",
+        note: "Cho ảnh dọc và những trang có nhiều lề.",
+        size: "20 × 28 cm",
+        pages: "48–64",
+        paper: "Mờ 170gsm",
+        cover: "Vải",
+        delivery: "5–7 ngày",
+        honest: "Đẹp cho chân dung. Trang đôi ngang sẽ hẹp hơn một chút.",
+      },
+      {
+        id: "a4",
+        group: "Lớn",
+        name: "A4",
+        note: "Trang lớn, ít lề, đủ cho một năm.",
+        size: "21 × 29,7 cm",
+        pages: "64–96",
+        paper: "Mờ 170gsm",
+        cover: "Vải",
+        delivery: "7–10 ngày",
+        honest: "Rất thoáng. Nếu chỉ có ít ảnh, cuốn sách sẽ trông mỏng.",
+      },
+      {
+        id: "landscape",
+        group: "Lớn",
+        name: "Ngang",
+        note: "Cho phong cảnh và những trang đôi rộng.",
+        size: "28 × 20 cm",
+        pages: "48–64",
+        paper: "Mờ 170gsm",
+        cover: "Vải",
+        delivery: "7–10 ngày",
+        honest: "Khổ của người hay chụp trời và biển. Không phù hợp ảnh chân dung đứng.",
+      },
+    ],
+  },
   quote: {
     text: "“Một bức ảnh nhớ ánh sáng. Một cuốn sách nhớ cả ngày hôm đó.”",
     attribution: "Xưởng Better Memoire",
@@ -78,6 +187,31 @@ const vi = {
     title: "Món đồ yêu thích tiếp theo.",
     body: "Bắt đầu từ những bức ảnh đã có trong điện thoại. Mang về một thứ bạn có thể cầm trên tay.",
     button: "Bắt đầu một cuốn sách",
+  },
+  contact: {
+    eyebrow: "Thư từ",
+    title: "Viết cho xưởng.",
+    body: "Không có hệ thống đặt lịch tự động. Kể cho chúng tôi bạn đang giữ những bức ảnh nào, bạn muốn cuốn sách dày bao nhiêu và khi nào cần. Chúng tôi sẽ viết lại với một hướng dẫn trang.",
+    note: "Tôi đọc mọi lá thư. Thường là trong cùng buổi tối, và luôn trong vòng hai ngày.",
+    signature: "Xưởng Better Memoire",
+    fields: {
+      name: "Tên của bạn",
+      email: "Email",
+      topic: "Bạn đang làm gì?",
+      timing: "Khi nào bạn cần?",
+      message: "Bạn muốn chúng tôi biết gì?",
+    },
+    placeholders: {
+      name: "Minh Anh",
+      email: "ban@example.com",
+      timing: "Tháng 6, hoặc trước sinh nhật…",
+      message: "Một kỷ niệm, một đứa trẻ, một chuyến đi…",
+    },
+    topics: ["Đám cưới", "Năm đầu tiên", "Một chuyến đi", "Một câu chuyện khác"],
+    send: "Gửi thư cho xưởng",
+    privacy:
+      "Chúng tôi chỉ dùng email để viết lại cho bạn. Chưa có gì được đặt hay tính phí cho đến khi cả hai bên thống nhất.",
+    sent: "Thư đã được mở trong ứng dụng email. Nếu không thấy, bạn có thể viết trực tiếp tới",
   },
   footer: {
     tagline:
@@ -88,7 +222,9 @@ const vi = {
     shopLinks: {
       books: "Sách",
       materials: "Chất liệu",
+      options: "Khổ sách",
       process: "Cách làm",
+      contact: "Viết cho xưởng",
     },
     accountLinks: {
       signIn: "Đăng nhập",
@@ -292,7 +428,9 @@ const en: Dictionary = {
   nav: {
     books: "Books",
     materials: "Materials",
+    options: "Formats",
     process: "How it works",
+    contact: "Write to us",
     signIn: "Sign in",
     signOut: "Sign out",
     start: "Start a book",
@@ -306,8 +444,9 @@ const en: Dictionary = {
   hero: {
     title: "Keep the days",
     accent: "that deserve a shelf.",
+    byline: "The Better Memoire studio, one Saturday morning.",
     subtitle:
-      "Design a photo book from your own memories. We print it on heavy paper and ship it to your door.",
+      "Design a photo book from your own memories. Choose the photographs already on your phone, write a few lines, and rearrange until it feels right. We print on heavy paper, check every copy by hand and deliver it to your door in a protective sleeve.",
     primary: "Start a book",
     secondary: "See the books",
     caption: "The weekend book.",
@@ -315,7 +454,9 @@ const en: Dictionary = {
   materials: {
     title: "Made to be handled.",
     intro:
-      "Cloth covers, thick matte pages, and a binding that opens flat. Built to be left out on the coffee table.",
+      "Cloth covers, thick matte pages and a binding that opens flat. We choose the paper by hand, proof each copy and keep the colours warm like an old photograph. Built to be left out on the coffee table, and sturdy enough to stay with you for years.",
+    detail:
+      "Each book is printed in a small run. Spines are checked, covers are folded by hand, and every copy is turned page by page before it leaves the studio.",
     bindingTitle: "Lay-flat binding",
     bindingBody:
       "Spreads stay whole. No fighting the gutter to see the middle of a photograph.",
@@ -325,9 +466,19 @@ const en: Dictionary = {
     coverCaption: "Cloth-wrapped covers, printed in small runs.",
   },
   books: {
-    title: "Start from a story.",
+    title: "Your book.",
     intro:
-      "Begin with a blank book or borrow a structure. Either way, the photographs are yours.",
+      "Most people start with a camera roll. Pick a story below and we will build the frame around it, then show you what it becomes as a printed book.",
+    eyebrow: "The story",
+    tabsNote: "Every story is a starting point. You can always change the order of the pages later.",
+    facts: [
+      { value: "24–40", label: "Spreads", note: "Printed both sides, opening flat." },
+      { value: "170", label: "Gsm", note: "Matte, warm, without glare." },
+      { value: "Cloth", label: "Cover", note: "Wrapped by hand." },
+      { value: "5–7", label: "Days", note: "Delivered to your door." },
+    ],
+    cta: "Start with this story",
+    signature: "The Better Memoire studio",
     items: [
       { title: "The wedding", note: "Vows, hands, and the table after." },
       { title: "The first year", note: "The small things you think you will remember." },
@@ -337,7 +488,10 @@ const en: Dictionary = {
   },
   process: {
     title: "From camera roll to coffee table.",
-    intro: "Three quiet steps. No design software, no blank canvas panic.",
+    intro:
+      "Three quiet steps. No design software, no blank-canvas panic. You bring the photographs; we take care of the paper, the binding and the colour.",
+    detail:
+      "If you are not sure where to start, send a stack of images. We will suggest a rhythm for the pages before you commit to print.",
     steps: [
       {
         title: "Choose a size",
@@ -353,6 +507,97 @@ const en: Dictionary = {
       },
     ],
   },
+  options: {
+    eyebrow: "The options",
+    title: "Every format.",
+    intro:
+      "No two are alike, and none is called “deluxe”. Choose one to see the photograph, then turn it over for the facts and the thing we would honestly tell a friend.",
+    flip: "Turn over for the facts",
+    flipBack: "Turn back to the picture",
+    cta: "Start with this format",
+    labels: {
+      format: "Format",
+      pages: "Pages",
+      paper: "Paper",
+      cover: "Cover",
+      delivery: "Delivery",
+      honestly: "Honestly",
+    },
+    items: [
+      {
+        id: "pocket",
+        group: "Small",
+        name: "Pocket",
+        note: "A small book for a drawer or a coat pocket.",
+        size: "10 × 15 cm",
+        pages: "32–48",
+        paper: "Matte 170gsm",
+        cover: "Cloth",
+        delivery: "5–7 days",
+        honest: "Lovely to carry. If you want the photographs big, choose the next size.",
+      },
+      {
+        id: "square-small",
+        group: "Small",
+        name: "Small square",
+        note: "One hand, one trip, just enough.",
+        size: "15 × 15 cm",
+        pages: "40–56",
+        paper: "Matte 170gsm",
+        cover: "Cloth",
+        delivery: "5–7 days",
+        honest: "The sweetest size. A little tight for large group photographs.",
+      },
+      {
+        id: "square",
+        group: "Standard",
+        name: "Square",
+        note: "The most balanced format for everyday pictures.",
+        size: "20 × 20 cm",
+        pages: "48–64",
+        paper: "Matte 170gsm",
+        cover: "Cloth",
+        delivery: "5–7 days",
+        honest: "The safe choice. This is the format we make most often.",
+      },
+      {
+        id: "portrait",
+        group: "Standard",
+        name: "Portrait",
+        note: "For upright photographs and generous margins.",
+        size: "20 × 28 cm",
+        pages: "48–64",
+        paper: "Matte 170gsm",
+        cover: "Cloth",
+        delivery: "5–7 days",
+        honest: "Beautiful for portraits. Wide spreads feel a little narrower.",
+      },
+      {
+        id: "a4",
+        group: "Large",
+        name: "A4",
+        note: "A big page with little margin, enough for a year.",
+        size: "21 × 29.7 cm",
+        pages: "64–96",
+        paper: "Matte 170gsm",
+        cover: "Cloth",
+        delivery: "7–10 days",
+        honest: "Very generous. With only a few photographs, the book will feel thin.",
+      },
+      {
+        id: "landscape",
+        group: "Large",
+        name: "Landscape",
+        note: "For coastlines and wide, open spreads.",
+        size: "28 × 20 cm",
+        pages: "48–64",
+        paper: "Matte 170gsm",
+        cover: "Cloth",
+        delivery: "7–10 days",
+        honest: "The format for sky-and-sea people. Not kind to upright portraits.",
+      },
+    ],
+  },
   quote: {
     text: "“A photograph remembers the light. A book remembers the day.”",
     attribution: "The Better Memoire studio",
@@ -361,6 +606,31 @@ const en: Dictionary = {
     title: "Your next favourite object.",
     body: "Start with the photos already on your phone. Leave with something you can hold.",
     button: "Start a book",
+  },
+  contact: {
+    eyebrow: "Letters",
+    title: "Write to us.",
+    body: "There is no booking engine. Tell us which photographs you are keeping, how thick you want the book, and when you need it. We will write back with a page rhythm to start from.",
+    note: "I read every letter myself. Usually the same evening, and always within two days.",
+    signature: "The Better Memoire studio",
+    fields: {
+      name: "Your names",
+      email: "Email",
+      topic: "What are you making?",
+      timing: "When do you need it?",
+      message: "Anything we should know?",
+    },
+    placeholders: {
+      name: "Minh Anh",
+      email: "you@example.com",
+      timing: "June, or before the birthday…",
+      message: "An anniversary, a child, a long trip…",
+    },
+    topics: ["A wedding", "The first year", "A trip", "Something else"],
+    send: "Send it to the studio",
+    privacy:
+      "We only use your email to write back. Nothing is booked or charged until we have agreed it together.",
+    sent: "An email draft has opened. If nothing happened, write to us directly at",
   },
   footer: {
     tagline:
@@ -371,7 +641,9 @@ const en: Dictionary = {
     shopLinks: {
       books: "Books",
       materials: "Materials",
+      options: "Formats",
       process: "How it works",
+      contact: "Write to us",
     },
     accountLinks: {
       signIn: "Sign in",

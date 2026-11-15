@@ -4,7 +4,7 @@ using Domain.Enums.Products;
 namespace Domain.Entities.SampleBooks
 {
     /// <summary>
-    /// Admin-managed template/album catalog entry. Soft-deleted so books and orders keep
+    /// Admin-managed template catalog entry. Soft-deleted so books and orders keep
     /// their <c>SampleBookId</c> reference. <see cref="Quantity"/> null means unlimited.
     /// </summary>
     public class SampleBook : SoftDeleteAggregateRoot
@@ -12,7 +12,6 @@ namespace Domain.Entities.SampleBooks
         public string Name { get; private set; } = string.Empty;
         public string? Slug { get; private set; }
         public string? Description { get; private set; }
-        public SampleBookType Type { get; private set; }
         public string? Category { get; private set; }
         public string[] Tags { get; private set; } = [];
         public int? Quantity { get; private set; }
@@ -33,7 +32,6 @@ namespace Domain.Entities.SampleBooks
 
         public SampleBook(
             string name,
-            SampleBookType type,
             string style,
             string font,
             string cover,
@@ -48,7 +46,6 @@ namespace Domain.Entities.SampleBooks
             string? content = null)
         {
             Name = name;
-            Type = type;
             Style = style;
             Font = font;
             Cover = cover;

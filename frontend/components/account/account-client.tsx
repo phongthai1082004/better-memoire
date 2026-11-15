@@ -5,6 +5,7 @@ import { PencilSimple, Plus, Trash } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AccountSelect } from "@/components/account/account-select";
+import { ChalkTab } from "@/components/ui/chalk-tab";
 import {
   apiRequest,
   type AddressItem,
@@ -306,19 +307,21 @@ export function AccountClient({
           </p>
         )}
 
-        <div className="mt-9 flex flex-wrap gap-2 border-b border-dashed border-line pb-4">
+        <div className="mt-9 flex flex-wrap gap-4 border-b border-dashed border-line pb-4">
           {tabs.map((item) => (
-            <button
+            <ChalkTab
               key={item.id}
-              type="button"
+              active={tab === item.id}
               onClick={() => setTab(item.id)}
+              insetX={10}
+              insetY={5}
               className={cn(
-                "btn btn-sm",
-                tab === item.id ? "btn-solid" : "btn-quiet text-muted",
+                "btn btn-quiet btn-sm !border-transparent hover:!border-transparent",
+                tab === item.id ? "text-yellow" : "text-muted",
               )}
             >
               {item.label}
-            </button>
+            </ChalkTab>
           ))}
         </div>
 

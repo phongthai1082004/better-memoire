@@ -14,13 +14,20 @@ export function Hero({
 }) {
   return (
     <section className="overflow-hidden">
-      <div className="page-shell grid items-center gap-16 pb-16 pt-12 md:pt-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20 lg:pb-32 lg:pt-20">
+      <div className="page-shell grid items-start gap-16 pb-16 pt-12 md:pt-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20 lg:pb-32 lg:pt-20">
         <Reveal immediate className="relative z-10 max-w-[640px]">
-          <h1 className="h-hero">
+          <h1 className="h-hero chalk-grain">
             {copy.title}
             <span className="em">{copy.accent}</span>
           </h1>
-          <p className="mt-7 max-w-[46ch] text-[1.06rem] leading-[1.7] text-body md:text-[1.16rem]">
+          <p className="hand mt-6 flex items-center gap-4 text-[1.34rem] leading-snug text-muted md:text-[1.46rem]">
+            <span
+              aria-hidden="true"
+              className="h-px w-10 shrink-0 border-t border-dashed border-line sm:w-14"
+            />
+            <span>{copy.byline}</span>
+          </p>
+          <p className="mt-6 max-w-[48ch] text-[1.1rem] leading-[1.7] text-body md:text-[1.2rem]">
             {copy.subtitle}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">

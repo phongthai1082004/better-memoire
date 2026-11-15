@@ -19,7 +19,6 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(s => s.Name).HasMaxLength(200).IsRequired();
             builder.Property(s => s.Slug).HasMaxLength(200);
             builder.Property(s => s.Description).HasMaxLength(2000);
-            builder.Property(s => s.Type).IsRequired().HasConversion<int>();
             builder.Property(s => s.Category).HasMaxLength(100);
             builder.Property(s => s.Tags).HasColumnType("text[]").IsRequired();
             builder.Property(s => s.Style).HasMaxLength(50).IsRequired();
@@ -35,7 +34,7 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasIndex(s => s.Slug)
                 .IsUnique()
                 .HasFilter("\"Slug\" IS NOT NULL AND \"IsDeleted\" = false");
-            builder.HasIndex(s => new { s.Type, s.Status, s.SortOrder });
+            builder.HasIndex(s => new { s.Status, s.SortOrder });
             builder.HasIndex(s => s.Category);
 
             builder.HasOne<User>()

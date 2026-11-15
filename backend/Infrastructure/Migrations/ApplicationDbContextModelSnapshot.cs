@@ -1620,9 +1620,6 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text[]");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Category");
@@ -1633,7 +1630,7 @@ namespace Infrastructure.Migrations
                         .IsUnique()
                         .HasFilter("\"Slug\" IS NOT NULL AND \"IsDeleted\" = false");
 
-                    b.HasIndex("Type", "Status", "SortOrder");
+                    b.HasIndex("Status", "SortOrder");
 
                     b.ToTable("sample_books", (string)null);
                 });

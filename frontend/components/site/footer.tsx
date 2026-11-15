@@ -12,7 +12,9 @@ export async function SiteFooter() {
       links: [
         { href: "/#books", label: t.footer.shopLinks.books },
         { href: "/#materials", label: t.footer.shopLinks.materials },
+        { href: "/#options", label: t.footer.shopLinks.options },
         { href: "/#process", label: t.footer.shopLinks.process },
+        { href: "/#contact", label: t.footer.shopLinks.contact },
       ],
     },
     {
@@ -49,7 +51,10 @@ export async function SiteFooter() {
               <ul className="mt-4 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.href + link.label}>
-                    <Link href={link.href} className="footer-link">
+                    <Link
+                      href={link.href}
+                      className="nav-link text-[0.95rem]"
+                    >
                       {link.label}
                     </Link>
                   </li>

@@ -10,6 +10,9 @@ export function Process({ copy }: { copy: Dictionary["process"] }) {
             {copy.title}
           </h2>
           <p className="mt-6 max-w-[36ch] text-body">{copy.intro}</p>
+          <p className="mt-4 max-w-[34ch] text-[0.98rem] leading-relaxed text-muted">
+            {copy.detail}
+          </p>
         </Reveal>
 
         <ol className="border-t border-dashed border-line">
@@ -23,10 +26,10 @@ export function Process({ copy }: { copy: Dictionary["process"] }) {
                   {index + 1}
                 </span>
                 <div>
-                  <h3 className="hand text-[1.7rem] leading-tight text-chalk">
+                  <h3 className="hand text-[1.85rem] leading-tight text-chalk">
                     {step.title}
                   </h3>
-                  <p className="mt-2 max-w-[50ch] text-[0.98rem] leading-relaxed text-body">
+                  <p className="mt-2 max-w-[52ch] text-[1.04rem] leading-relaxed text-body">
                     {step.body}
                   </p>
                 </div>

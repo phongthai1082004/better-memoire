@@ -45,8 +45,8 @@
   --panel: #23272d; /* a darker panel chalked onto the board */
 
   --chalk: #f3f0e6; /* fresh white chalk */
-  --text: #d8d6cd; /* body chalk, slightly dusted */
-  --muted: #9a9da3; /* rubbed-out chalk */
+  --text: #e0ddd4; /* body chalk, slightly dusted */
+  --muted: #b8b5ae; /* rubbed-out chalk */
 
   --yellow: #e9c84a; /* the one accent */
   --yellow-ink: #2a2a22;
@@ -60,7 +60,7 @@
   --gutter: clamp(20px, 4vw, 56px);
   --section-y: clamp(76px, 9vw, 136px);
 
-  --board-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='900'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02 .032' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .78 0 0 0 0 .8 0 0 0 0 .86 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --board-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='900'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02 .032' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .78 0 0 0 0 .8 0 0 0 0 .86 0 0 0 .17 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @layer base {
@@ -79,7 +79,7 @@
     background-color: transparent;
     color: var(--text);
     font-family: var(--font-body);
-    font-size: 1.0625rem;
+    font-size: 1.08rem;
     line-height: 1.7;
     font-synthesis-weight: none;
     -webkit-font-smoothing: antialiased;
@@ -142,7 +142,7 @@
     margin: 0;
     font-family: var(--font-chalk);
     font-weight: 400;
-    font-size: clamp(3.15rem, 6.6vw, 5.6rem);
+    font-size: clamp(3.25rem, 6.8vw, 5.9rem);
     line-height: 1.02;
     letter-spacing: 0.005em;
     color: var(--chalk);
@@ -156,13 +156,18 @@
     color: var(--yellow);
   }
 
+  .h-hero.chalk-grain .em {
+    color: var(--yellow);
+    -webkit-text-fill-color: var(--yellow);
+  }
+
   .h-section {
     margin: 0;
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: clamp(1.8rem, 3.4vw, 2.75rem);
+    font-size: clamp(2rem, 3.8vw, 3.05rem);
     line-height: 1.1;
-    letter-spacing: 0.13em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--chalk);
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.22);
@@ -178,16 +183,48 @@
   .quote-hand {
     margin: 0;
     font-family: var(--font-chalk);
-    font-size: clamp(1.75rem, 3.5vw, 2.85rem);
-    line-height: 1.32;
+    font-size: clamp(1.9rem, 4vw, 3.15rem);
+    line-height: 1.3;
     color: var(--chalk);
     text-wrap: balance;
   }
 
+  /* Chalk dust: keep the handwriting, add the grain of the board. */
+  .chalk-grain {
+    color: var(--chalk);
+  }
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .chalk-grain {
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='4' seed='12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"),
+        linear-gradient(180deg, var(--chalk) 0%, #d6d2c7 100%);
+      background-size: 32px 32px, 100% 100%;
+      background-repeat: repeat, no-repeat;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      filter: contrast(1.06) drop-shadow(0 1px 0 rgba(255, 255, 255, 0.08));
+    }
+
+    .h-hero.chalk-grain .em {
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='4' seed='12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"),
+        linear-gradient(180deg, var(--yellow) 0%, #d4b43a 100%);
+      background-size: 32px 32px, 100% 100%;
+      background-repeat: repeat, no-repeat;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+  }
+
   .eyebrow {
-    font-size: 0.72rem;
+    font-size: 0.76rem;
     font-weight: 500;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
   }
@@ -215,6 +252,38 @@
 
   .panel-outline {
     border: 1.5px dashed var(--line);
+  }
+
+  /* A darker inset surface that keeps the board visible through it. */
+  .vignette-panel {
+    background-color: rgba(15, 19, 24, 0.52);
+    background-image:
+      radial-gradient(
+        ellipse 115% 100% at 50% 42%,
+        transparent 22%,
+        rgba(4, 6, 9, 0.1) 56%,
+        rgba(2, 3, 5, 0.28) 84%,
+        rgba(2, 3, 5, 0.48) 100%
+      );
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .option-card__back {
+    background-color: rgba(11, 15, 19, 0.6);
+    background-image:
+      radial-gradient(
+        ellipse 120% 100% at 50% 38%,
+        transparent 20%,
+        rgba(4, 6, 9, 0.12) 54%,
+        rgba(2, 3, 5, 0.34) 82%,
+        rgba(2, 3, 5, 0.54) 100%
+      );
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    box-shadow: inset 0 0 90px 10px rgba(0, 0, 0, 0.1);
   }
 
   .panel-sheen::before {
@@ -330,34 +399,19 @@
   .nav-link {
     position: relative;
     padding-block: 0.35rem;
-    font-size: 1rem;
+    font-size: 1.02rem;
     font-weight: 500;
     color: var(--text);
     text-decoration: none;
     transition: color 160ms ease;
   }
 
-  .nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-bottom: 1.5px dashed transparent;
-    transition: border-color 160ms ease;
-  }
-
   .nav-link:hover {
     color: var(--chalk);
   }
 
-  .nav-link:hover::after,
-  .nav-link[aria-current="page"]::after {
-    border-color: var(--yellow);
-  }
-
   .nav-link[aria-current="page"] {
-    color: var(--chalk);
+    color: var(--yellow);
   }
 
   /* ---------- Photographs & tape ---------- */
@@ -466,18 +520,25 @@
     color: var(--chalk);
   }
 
+  /* Chalk selection rings are drawn with stroke dash offset. */
+  @media (prefers-reduced-motion: reduce) {
+    .chalk-circle-path {
+      transition: none !important;
+    }
+  }
+
   .chalk-tab[aria-selected="true"] {
-    color: var(--chalk);
-    border-color: var(--yellow);
+    color: var(--yellow);
+    border-color: transparent;
     transform: rotate(-1.6deg);
   }
 
   /* ---------- Fields ---------- */
   .field-label {
     display: block;
-    font-size: 0.74rem;
+    font-size: 0.78rem;
     font-weight: 500;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
   }
@@ -491,7 +552,7 @@
     background: transparent;
     color: var(--chalk);
     font-family: var(--font-body);
-    font-size: 1.04rem;
+    font-size: 1.07rem;
     line-height: 1.5;
     color-scheme: dark;
     outline: none;
@@ -549,17 +610,8 @@
   }
 
   /* ---------- Footer ---------- */
-  .footer-link {
-    font-size: 0.95rem;
-    color: var(--text);
-    text-decoration: none;
-    transition: color 160ms ease;
-  }
-
-  .footer-link:hover {
-    color: var(--yellow);
-  }
 }
+
 
 /* The board itself: one fixed, seamless cloudy-slate sheet behind everything. */
 .board-texture {
@@ -583,6 +635,29 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  filter: contrast(1.12) saturate(0.88);
+}
+
+/* A real vignette: the board falls away at the edges instead of sitting flat. */
+.board-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 105% 88% at 50% 42%,
+      transparent 28%,
+      rgba(7, 9, 12, 0.1) 52%,
+      rgba(5, 7, 10, 0.42) 78%,
+      rgba(3, 4, 6, 0.74) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.025),
+      transparent 16%,
+      transparent 78%,
+      rgba(0, 0, 0, 0.16)
+    );
 }
 
 /* Fixed, non-interactive film grain over the whole board. */
@@ -591,7 +666,7 @@
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.045;
+  opacity: 0.08;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 

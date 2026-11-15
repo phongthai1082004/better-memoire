@@ -43,7 +43,7 @@ variables:
 The local test setup uses Memurai (Redis) plus a mock Resend endpoint. Google login is a real
 OAuth 2.0 authorization-code flow handled by the Next.js server; the backend only receives
 the resulting ID token and validates its Google signature, issuer, expiry and audience.
-See `docs/GOOGLE_SIGNIN_TEST.md`.
+See `docs/testing/GOOGLE_SIGNIN_TEST.md`.
 
 ## Localization and error codes
 

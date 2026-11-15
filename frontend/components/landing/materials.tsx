@@ -23,6 +23,9 @@ export function Materials({
               {copy.title}
             </h2>
             <p className="mt-6 max-w-[38ch] text-body">{copy.intro}</p>
+            <p className="mt-5 max-w-[36ch] text-[0.98rem] leading-relaxed text-muted">
+              {copy.detail}
+            </p>
           </Reveal>
 
           <div className="grid gap-9 sm:grid-cols-2">
@@ -38,35 +41,21 @@ export function Materials({
 
             {specs.map((spec, index) => (
               <Reveal key={spec.title} delay={0.05 + index * 0.05}>
-                <div className="panel flex h-full flex-col p-6 md:p-7">
+                <div className="vignette-panel panel flex h-full flex-col p-6 md:p-7">
                   <div className="flex items-center gap-4">
                     <span className="chalk-circle h-11 w-11 text-[1.1rem]">
                       {spec.number}
                     </span>
-                    <h3 className="hand text-[1.5rem] leading-tight text-chalk md:min-h-[3.4rem]">
+                    <h3 className="hand text-[1.62rem] leading-tight text-chalk md:min-h-[3.4rem]">
                       {spec.title}
                     </h3>
                   </div>
-                  <p className="mt-3 text-[0.95rem] leading-relaxed text-body">
+                  <p className="mt-3 text-[1rem] leading-relaxed text-body">
                     {spec.body}
                   </p>
                 </div>
               </Reveal>
             ))}
-
-            <Reveal delay={0.15} className="sm:col-span-2">
-              <Polaroid
-                src="/images/paper-stack.webp"
-                alt={images.paperStack}
-                aspect="wide"
-                tilt={1.3}
-                sizes="(min-width: 1024px) 58vw, 92vw"
-              >
-                <span className="hand text-[1.02rem] text-body">
-                  {copy.coverCaption}
-                </span>
-              </Polaroid>
-            </Reveal>
           </div>
         </div>
       </div>

@@ -68,7 +68,8 @@ export function LocaleSwitcher({
         aria-label={label}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="inline-flex h-10 items-center gap-1.5 border border-dashed border-transparent px-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-chalk transition-colors hover:border-line"
+        className="inline-flex h-10 items-center gap-1.5 border border-dashed border-line px-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-chalk transition-colors hover:border-line hover:bg-white/5"
+        style={{ borderRadius: "3px 6px 4px 6px / 6px 4px 6px 3px" }}
       >
         {locale.toUpperCase()}
         <span aria-hidden="true" className="text-[0.58rem] text-muted">
@@ -92,7 +93,7 @@ export function LocaleSwitcher({
               aria-checked={option.locale === locale}
               onClick={() => switchLocale(option.locale)}
               className={cn(
-                "block w-full px-4 py-2.5 text-left text-[0.78rem] font-semibold uppercase tracking-[0.16em] transition-colors hover:bg-board-deep hover:text-yellow",
+                "block w-full px-4 py-2.5 text-left text-[0.78rem] font-semibold uppercase tracking-[0.16em] transition-colors hover:bg-white/[0.06] hover:text-yellow",
                 option.locale === locale ? "text-yellow" : "text-body",
               )}
             >

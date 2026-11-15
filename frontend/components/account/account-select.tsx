@@ -1,6 +1,6 @@
 "use client";
 
-import { CaretDown, Check } from "@phosphor-icons/react";
+import { CaretDown } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -71,12 +71,11 @@ export function AccountSelect({
                 setOpen(false);
               }}
               className={cn(
-                "flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-[0.86rem] transition-colors hover:bg-board-deep hover:text-yellow",
+                "flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-[0.86rem] transition-colors hover:bg-white/[0.06] hover:text-yellow",
                 option.value === value ? "text-yellow" : "text-body",
               )}
             >
-              {option.label}
-              {option.value === value && <Check size={13} />}
+              <span>{option.label}</span>
             </button>
           ))}
         </div>

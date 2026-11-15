@@ -11,6 +11,7 @@ import { NotificationsBell } from "@/components/notifications/notifications-bell
 import { UserMenu } from "@/components/site/user-menu";
 import { Brand } from "@/components/ui/brand";
 import { buttonStyles } from "@/components/ui/button";
+import { ChalkCircle } from "@/components/ui/chalk-circle";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 import type { HeaderUser } from "@/lib/auth/session";
@@ -28,6 +29,8 @@ export function HeaderClient({
 }) {
   const isAuthenticated = Boolean(user);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>("books");
+  const [focusedHref, setFocusedHref] = useState<string | null>(null);
   const reduce = useReducedMotion();
   const pathname = usePathname();
   const isLanding = pathname === "/";
@@ -35,7 +38,9 @@ export function HeaderClient({
   const landingLinks = [
     { href: "/#books", label: copy.books },
     { href: "/#materials", label: copy.materials },
+    { href: "/#options", label: copy.options },
     { href: "/#process", label: copy.process },
+    { href: "/#contact", label: copy.contact },
   ];
 
   const links = user
@@ -46,6 +51,15 @@ export function HeaderClient({
     : isLanding
       ? landingLinks
       : [];
+
+  function isCurrentLink(href: string) {
+    if (user) {
+      return href === "/"
+        ? pathname === "/"
+        : pathname === href || pathname.startsWith(`${href}/`);
+    }
+    return href === `/#${activeSection}`;
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -64,15 +78,58 @@ export function HeaderClient({
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!isLanding) return;
+
+    const ids = ["books", "materials", "options", "process", "contact"];
+
+    function onScroll() {
+      const marker = window.scrollY + window.innerHeight * 0.38;
+      let current: string | null = "books";
+
+      for (const id of ids) {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= marker) current = id;
+      }
+
+      setActiveSection(current);
+    }
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [isLanding]);
+
   return (
     <header className="sticky top-0 z-40 border-b border-line-soft bg-board-deep/90 backdrop-blur-md">
       <div className="flex h-[78px] w-full items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
         <Brand />
 
-        <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-7 xl:flex 2xl:gap-9">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="nav-link">
-              {link.label}
+            <Link
+              key={link.href}
+              href={link.href}
+              className="nav-link outline-none focus-visible:outline-none"
+              aria-current={
+                isCurrentLink(link.href) ? "page" : undefined
+              }
+              onFocus={() => setFocusedHref(link.href)}
+              onBlur={() => setFocusedHref(null)}
+            >
+              <ChalkCircle
+                active={
+                  link.href === focusedHref ||
+                  (isCurrentLink(link.href) && !focusedHref)
+                }
+                insetX={20}
+                insetY={8}
+              />
+              <span className="relative z-10">{link.label}</span>
             </Link>
           ))}
         </nav>
@@ -87,7 +144,7 @@ export function HeaderClient({
           ) : (
             <Link
               href="/auth"
-              className="nav-link hidden text-[0.95rem] sm:inline-flex"
+              className="btn btn-outline btn-sm hidden h-10 !border-line !text-chalk hover:!border-line hover:!bg-white/5 hover:!text-chalk sm:inline-flex"
             >
               {copy.signIn}
             </Link>
@@ -132,9 +189,20 @@ export function HeaderClient({
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="hand border-b border-dashed border-line-soft py-4 text-[1.75rem] leading-none text-chalk"
+                  onFocus={() => setFocusedHref(link.href)}
+                  onBlur={() => setFocusedHref(null)}
+                  aria-current={isCurrentLink(link.href) ? "page" : undefined}
+                  className="hand relative border-b border-dashed border-line-soft py-4 text-[1.75rem] leading-none text-chalk outline-none focus-visible:outline-none"
                 >
-                  {link.label}
+                  <ChalkCircle
+                    active={
+                      link.href === focusedHref ||
+                      (isCurrentLink(link.href) && !focusedHref)
+                    }
+                    insetX={18}
+                    insetY={10}
+                  />
+                  <span className="relative z-10">{link.label}</span>
                 </Link>
               ))}
               {isAuthenticated ? (

@@ -6,7 +6,7 @@ export function Quote({ copy }: { copy: Dictionary["quote"] }) {
     <section className="border-y border-line-soft py-[var(--section-y)]">
       <div className="page-shell">
         <Reveal className="mx-auto max-w-[52rem] text-center">
-          <blockquote className="quote-hand">{copy.text}</blockquote>
+          <blockquote className="quote-hand chalk-grain">{copy.text}</blockquote>
           <svg
             aria-hidden="true"
             viewBox="0 0 120 12"

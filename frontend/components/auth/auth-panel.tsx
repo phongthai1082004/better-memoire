@@ -8,6 +8,7 @@ import { GoogleAuthButton } from "@/components/auth/google-auth-button";
 import { LoginForm } from "@/components/auth/login-form";
 import { OtpForm } from "@/components/auth/otp-form";
 import { RegisterForm } from "@/components/auth/register-form";
+import { ChalkTab } from "@/components/ui/chalk-tab";
 import { fill } from "@/lib/i18n/format";
 import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
@@ -74,19 +75,19 @@ export function AuthPanel({
         className="chalk-tabs"
       >
         {tabs.map((tab) => (
-          <button
+          <ChalkTab
             key={tab.mode}
             id={`auth-tab-${tab.mode}`}
             role="tab"
-            type="button"
             aria-selected={mode === tab.mode}
             aria-controls={`auth-panel-${tab.mode}`}
             tabIndex={mode === tab.mode ? 0 : -1}
+            active={mode === tab.mode}
             onClick={() => selectMode(tab.mode)}
             className="chalk-tab"
           >
             {tab.label}
-          </button>
+          </ChalkTab>
         ))}
       </div>
 

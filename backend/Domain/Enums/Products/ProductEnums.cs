@@ -1,11 +1,5 @@
 namespace Domain.Enums.Products
 {
-    public enum SampleBookType
-    {
-        Album = 0,
-        Template = 1
-    }
-
     public enum SampleBookStatus
     {
         Draft = 0,
