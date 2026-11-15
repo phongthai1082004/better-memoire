@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Auth.InvalidCredentials" xml:space="preserve">
+    <value>Email hoặc mật khẩu không đúng.</value>
+  </data>
+  <data name="Auth.AccountSuspended" xml:space="preserve">
+    <value>Tài khoản đã bị tạm khóa.</value>
+  </data>
+  <data name="Auth.EmailNotVerified" xml:space="preserve">
+    <value>Vui lòng xác minh email trước khi đăng nhập.</value>
+  </data>
+  <data name="Auth.EmailExists" xml:space="preserve">
+    <value>Email này đã được đăng ký.</value>
+  </data>
+  <data name="Auth.AccountCannotRegister" xml:space="preserve">
+    <value>Không thể đăng ký tài khoản này.</value>
+  </data>
+  <data name="Auth.OtpSent" xml:space="preserve">
+    <value>Nếu email có thể đăng ký, mã xác minh đã được gửi.</value>
+  </data>
+  <data name="Auth.InvalidOtp" xml:space="preserve">
+    <value>Mã xác minh không đúng hoặc đã hết hạn.</value>
+  </data>
+  <data name="Auth.AlreadyVerified" xml:space="preserve">
+    <value>Tài khoản đã được xác minh. Vui lòng đăng nhập.</value>
+  </data>
+  <data name="Auth.PasswordRequired" xml:space="preserve">
+    <value>Cần mật khẩu để hoàn tất đăng ký.</value>
+  </data>
+  <data name="Auth.GoogleLinkedOther" xml:space="preserve">
+    <value>Email này đã liên kết với một tài khoản Google khác.</value>
+  </data>
+  <data name="Auth.RefreshInvalid" xml:space="preserve">
+    <value>Phiên đăng nhập không hợp lệ hoặc đã hết hạn.</value>
+  </data>
+  <data name="Auth.RefreshRevoked" xml:space="preserve">
+    <value>Phiên đăng nhập không còn hiệu lực.</value>
+  </data>
+  <data name="Auth.AuthenticationRequired" xml:space="preserve">
+    <value>Cần đăng nhập để thực hiện thao tác này.</value>
+  </data>
+  <data name="Auth.SignedOut" xml:space="preserve">
+    <value>Đã đăng xuất.</value>
+  </data>
+  <data name="Auth.GoogleNotConfigured" xml:space="preserve">
+    <value>Đăng nhập Google chưa được cấu hình.</value>
+  </data>
+  <data name="Auth.GoogleEmailNotVerified" xml:space="preserve">
+    <value>Email Google chưa được xác minh.</value>
+  </data>
+  <data name="Auth.GoogleNoEmail" xml:space="preserve">
+    <value>Tài khoản Google không có địa chỉ email.</value>
+  </data>
+  <data name="Auth.GoogleInvalid" xml:space="preserve">
+    <value>Thông tin đăng nhập Google không hợp lệ hoặc đã hết hạn.</value>
+  </data>
+  <data name="Auth.EmailNotConfigured" xml:space="preserve">
+    <value>Dịch vụ email chưa được cấu hình.</value>
+  </data>
+  <data name="Auth.EmailUnavailable" xml:space="preserve">
+    <value>Không thể gửi email lúc này. Vui lòng thử lại sau.</value>
+  </data>
+  <data name="Auth.UnauthorizedDetail" xml:space="preserve">
+    <value>Bạn cần đăng nhập để truy cập tài nguyên này.</value>
+  </data>
+  <data name="Validation.EmailRequired" xml:space="preserve">
+    <value>Email là bắt buộc.</value>
+  </data>
+  <data name="Validation.EmailInvalid" xml:space="preserve">
+    <value>Email không hợp lệ.</value>
+  </data>
+  <data name="Validation.PasswordRequired" xml:space="preserve">
+    <value>Mật khẩu là bắt buộc.</value>
+  </data>
+  <data name="Validation.PasswordMin6" xml:space="preserve">
+    <value>Mật khẩu phải có ít nhất 6 ký tự.</value>
+  </data>
+  <data name="Validation.PasswordMin8" xml:space="preserve">
+    <value>Mật khẩu phải có ít nhất 8 ký tự.</value>
+  </data>
+  <data name="Validation.PasswordUppercase" xml:space="preserve">
+    <value>Mật khẩu phải có ít nhất một chữ in hoa.</value>
+  </data>
+  <data name="Validation.PasswordLowercase" xml:space="preserve">
+    <value>Mật khẩu phải có ít nhất một chữ thường.</value>
+  </data>
+  <data name="Validation.PasswordNumber" xml:space="preserve">
+    <value>Mật khẩu phải có ít nhất một chữ số.</value>
+  </data>
+  <data name="Validation.PasswordSymbol" xml:space="preserve">
+    <value>Mật khẩu phải có ít nhất một ký tự đặc biệt.</value>
+  </data>
+  <data name="Validation.FullNameRequired" xml:space="preserve">
+    <value>Họ tên là bắt buộc.</value>
+  </data>
+  <data name="Validation.FullNameMax" xml:space="preserve">
+    <value>Họ tên không được vượt quá {0} ký tự.</value>
+  </data>
+  <data name="Validation.PhoneInvalid" xml:space="preserve">
+    <value>Số điện thoại không hợp lệ.</value>
+  </data>
+  <data name="Validation.OtpRequired" xml:space="preserve">
+    <value>Mã xác minh là bắt buộc.</value>
+  </data>
+  <data name="Validation.OtpSixDigits" xml:space="preserve">
+    <value>Mã xác minh phải gồm 6 chữ số.</value>
+  </data>
+  <data name="Validation.RefreshRequired" xml:space="preserve">
+    <value>Refresh token là bắt buộc.</value>
+  </data>
+  <data name="Validation.GoogleCredentialRequired" xml:space="preserve">
+    <value>Thông tin xác thực Google là bắt buộc.</value>
+  </data>
+  <data name="Validation.AvatarInvalid" xml:space="preserve">
+    <value>Ảnh đại diện phải là URL hợp lệ.</value>
+  </data>
+  <data name="Error.NotFound" xml:space="preserve">
+    <value>Không tìm thấy tài nguyên.</value>
+  </data>
+  <data name="Error.BadRequest" xml:space="preserve">
+    <value>Yêu cầu không hợp lệ.</value>
+  </data>
+  <data name="Error.TimedOut" xml:space="preserve">
+    <value>Yêu cầu đã hết thời gian chờ.</value>
+  </data>
+  <data name="Error.Unexpected" xml:space="preserve">
+    <value>Đã xảy ra lỗi. Vui lòng thử lại sau.</value>
+  </data>
+  <data name="Error.RateLimitedTitle" xml:space="preserve">
+    <value>Quá nhiều yêu cầu</value>
+  </data>
+  <data name="Error.RateLimitedDetail" xml:space="preserve">
+    <value>Bạn đã gửi quá nhiều yêu cầu. Vui lòng thử lại sau.</value>
+  </data>
+  <data name="Error.UnauthorizedTitle" xml:space="preserve">
+    <value>Chưa xác thực</value>
+  </data>
+  <data name="Idempotency.MissingKey" xml:space="preserve">
+    <value>Thiếu tiêu đề 'Idempotency-Key' bắt buộc.</value>
+  </data>
+  <data name="Idempotency.PayloadMismatch" xml:space="preserve">
+    <value>Nội dung yêu cầu không khớp với khóa idempotency. Vui lòng thử lại.</value>
+  </data>
+  <data name="Idempotency.InProgress" xml:space="preserve">
+    <value>Một yêu cầu có cùng khóa idempotency đang được xử lý.</value>
+  </data>
+  <data name="Repository.NotFound" xml:space="preserve">
+    <value>Không tìm thấy {0} với ID '{1}'.</value>
+  </data>
+  <data name="Db.UniqueViolation" xml:space="preserve">
+    <value>Bản ghi đã tồn tại.</value>
+  </data>
+  <data name="Db.ForeignKeyViolation" xml:space="preserve">
+    <value>Bản ghi được tham chiếu không tồn tại hoặc đang được sử dụng.</value>
+  </data>
+  <data name="Db.NotNullViolation" xml:space="preserve">
+    <value>Thiếu trường bắt buộc.</value>
+  </data>
+  <data name="Db.CheckViolation" xml:space="preserve">
+    <value>Dữ liệu vi phạm ràng buộc nghiệp vụ.</value>
+  </data>
+  <data name="Db.ConcurrencyConflict" xml:space="preserve">
+    <value>Xung đột đồng thời. Vui lòng thử lại.</value>
+  </data>
+  <data name="Email.OtpSubject" xml:space="preserve">
+    <value>Mã xác minh Better Memoire</value>
+  </data>
+  <data name="Email.OtpTitle" xml:space="preserve">
+    <value>Mã xác minh của bạn</value>
+  </data>
+  <data name="Email.OtpIntro" xml:space="preserve">
+    <value>Nhập mã bên dưới để hoàn tất đăng ký. Mã có hiệu lực trong {0} phút.</value>
+  </data>
+  <data name="Email.OtpIgnore" xml:space="preserve">
+    <value>Nếu bạn không yêu cầu mã này, hãy bỏ qua email. Không chia sẻ mã với bất kỳ ai.</value>
+  </data>
+  <data name="Email.OtpEnglish" xml:space="preserve">
+    <value>Mã có hiệu lực trong {0} phút. Không chia sẻ mã với bất kỳ ai.</value>
+  </data>
+  <data name="Auth.GoogleUnavailable" xml:space="preserve">
+    <value>Không thể xác minh Google lúc này. Vui lòng thử lại sau.</value>
+  </data>
+  <data name="Auth.PhoneExists" xml:space="preserve">
+    <value>Số điện thoại này đã được sử dụng.</value>
+  </data>
+  <data name="Auth.OtpTooManyAttempts" xml:space="preserve">
+    <value>Bạn đã nhập sai quá nhiều lần. Vui lòng yêu cầu mã mới.</value>
+  </data>
+  <data name="Error.Forbidden" xml:space="preserve">
+    <value>Bạn không có quyền thực hiện thao tác này.</value>
+  </data>
+  <data name="Error.ValidationFailed" xml:space="preserve">
+    <value>Dữ liệu gửi lên chưa hợp lệ.</value>
+  </data>
+  <data name="Error.UnprocessableEntity" xml:space="preserve">
+    <value>Không thể xử lý yêu cầu này.</value>
+  </data>
+  <data name="Error.TooManyRequests" xml:space="preserve">
+    <value>Bạn đã gửi quá nhiều yêu cầu. Vui lòng thử lại sau.</value>
+  </data>
+  <data name="Error.ServiceUnavailable" xml:space="preserve">
+    <value>Dịch vụ tạm thời không khả dụng. Vui lòng thử lại sau.</value>
+  </data>
+  <data name="Domain.UserCannotActivateBanned" xml:space="preserve">
+    <value>Không thể kích hoạt tài khoản đang bị khóa.</value>
+  </data>
+  <data name="Domain.UserFullNameRequired" xml:space="preserve">
+    <value>Họ tên là bắt buộc.</value>
+  </data>
+  <data name="Domain.UserPasswordRequired" xml:space="preserve">
+    <value>Mật khẩu là bắt buộc.</value>
+  </data>
+  <data name="Domain.UserExternalTokenExists" xml:space="preserve">
+    <value>Tài khoản đã liên kết với nhà cung cấp này.</value>
+  </data>
+  <data name="Domain.UserExternalTokenMissing" xml:space="preserve">
+    <value>Tài khoản chưa liên kết với nhà cung cấp này.</value>
+  </data>
+  <data name="Domain.BookPageExists" xml:space="preserve">
+    <value>Trang này đã tồn tại trong sách.</value>
+  </data>
+  <data name="Domain.BookPageVersionConflict" xml:space="preserve">
+    <value>Trang đã được sửa ở một phiên khác. Vui lòng tải lại.</value>
+  </data>
+  <data name="Domain.CartBookNotFound" xml:space="preserve">
+    <value>Cuốn sách này không có trong giỏ hàng.</value>
+  </data>
+  <data name="Domain.OrderSupplierAlreadyAssigned" xml:space="preserve">
+    <value>Đơn hàng đã được giao cho nhà in.</value>
+  </data>
+  <data name="Domain.OrderForceReasonRequired" xml:space="preserve">
+    <value>Cần nhập lý do khi đổi trạng thái thủ công.</value>
+  </data>
+  <data name="Domain.OrderInvalidTransition" xml:space="preserve">
+    <value>Không thể chuyển đơn hàng sang trạng thái này.</value>
+  </data>
+  <data name="Domain.OrderReturnAlreadyRequested" xml:space="preserve">
+    <value>Yêu cầu trả hàng cho sản phẩm này đã tồn tại.</value>
+  </data>
+  <data name="Domain.OrderReturnNotRequested" xml:space="preserve">
+    <value>Chỉ có thể duyệt yêu cầu trả hàng đã gửi.</value>
+  </data>
+  <data name="Domain.OrderDefectAlreadyReported" xml:space="preserve">
+    <value>Sản phẩm này đã được báo lỗi.</value>
+  </data>
+  <data name="Domain.OrderDefectNotReported" xml:space="preserve">
+    <value>Chỉ có thể xử lý lỗi đã được báo.</value>
+  </data>
+  <data name="Domain.CouponUsageLimitReached" xml:space="preserve">
+    <value>Mã giảm giá đã hết lượt sử dụng.</value>
+  </data>
+  <data name="Domain.SupplierBanReasonRequired" xml:space="preserve">
+    <value>Cần nhập lý do khóa nhà in.</value>
+  </data>
+  <data name="Domain.FinancePeriodFormat" xml:space="preserve">
+    <value>Kỳ kế toán phải có định dạng YYYY-MM.</value>
+  </data>
+  <data name="Domain.MaintenanceEndAfterStart" xml:space="preserve">
+    <value>Thời điểm kết thúc phải sau thời điểm bắt đầu.</value>
+  </data>
+  <data name="Domain.MaintenanceTooLong" xml:space="preserve">
+    <value>Khoảng bảo trì không được dài quá 24 giờ.</value>
+  </data>
+  <data name="Domain.ExpenseAmountPositive" xml:space="preserve">
+    <value>Số tiền chi phí phải lớn hơn 0.</value>
+  </data>
+  <data name="Domain.CashflowAmountPositive" xml:space="preserve">
+    <value>Số tiền dòng tiền phải lớn hơn 0.</value>
+  </data>
+  <data name="Domain.IncomeSaleNotNegative" xml:space="preserve">
+    <value>Doanh thu bán hàng không được âm.</value>
+  </data>
+  <data name="Auth.CurrentPasswordRequired" xml:space="preserve">
+    <value>Vui lòng nhập mật khẩu hiện tại.</value>
+  </data>
+  <data name="Auth.CurrentPasswordWrong" xml:space="preserve">
+    <value>Mật khẩu hiện tại không đúng.</value>
+  </data>
+  <data name="Auth.NewPasswordInvalid" xml:space="preserve">
+    <value>Mật khẩu mới phải có ít nhất 8 ký tự.</value>
+  </data>
+  <data name="Auth.PasswordChanged" xml:space="preserve">
+    <value>Mật khẩu đã được cập nhật.</value>
+  </data>
+  <data name="Media.UrlRequired" xml:space="preserve">
+    <value>Thiếu đường dẫn ảnh.</value>
+  </data>
+  <data name="Media.InvalidUrl" xml:space="preserve">
+    <value>Đường dẫn ảnh không hợp lệ.</value>
+  </data>
+  <data name="Media.NotFound" xml:space="preserve">
+    <value>Không tìm thấy ảnh.</value>
+  </data>
+  <data name="Media.StorageNotConfigured" xml:space="preserve">
+    <value>Dịch vụ lưu ảnh chưa được cấu hình.</value>
+  </data>
+  <data name="Media.UploadUnavailable" xml:space="preserve">
+    <value>Không thể tải ảnh lên lúc này.</value>
+  </data>
+  <data name="Notification.NotFound" xml:space="preserve">
+    <value>Không tìm thấy thông báo.</value>
+  </data>
+  <data name="Media.Deleted" xml:space="preserve">
+    <value>Đã xóa ảnh.</value>
+  </data>
+  <data name="Address.NotFound" xml:space="preserve">
+    <value>Không tìm thấy địa chỉ.</value>
+  </data>
+  <data name="Address.Deleted" xml:space="preserve">
+    <value>Đã xóa địa chỉ.</value>
+  </data>
+</root>

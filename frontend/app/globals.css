@@ -1,0 +1,627 @@
+@import "tailwindcss";
+
+/*
+  Better Memoire — "Chalkboard & polaroid" design system
+  ------------------------------------------------------
+  One board, one light: a slate-black studio wall, chalk lettering, a yellow
+  stick of chalk, printed photographs taped at the corners. No mid-page theme
+  inversion: every surface is a variation of the same board.
+
+  Type
+    Cormorant SC      wordmark, section headings, small labelled facts
+    Grape Nuts        the chalk voice: headlines, captions, bylines, tabs
+    Alegreya Sans     running text, forms, buttons, navigation
+
+  Shape
+    Photographs are physical prints: cream matte, soft shadow, tape, a tilt.
+    Buttons are chalk shapes with uneven edges, never perfect pills.
+    Fields are ruled lines, not boxes.
+*/
+
+@theme inline {
+  --color-board: var(--board);
+  --color-board-deep: var(--board-deep);
+  --color-panel: var(--panel);
+  --color-chalk: var(--chalk);
+  --color-body: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-yellow: var(--yellow);
+  --color-yellow-ink: var(--yellow-ink);
+  --color-coral: var(--coral);
+  --color-paper: var(--paper);
+
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-chalk: var(--font-grape), "Segoe Print", "Bradley Hand", cursive;
+  --font-body: var(--font-alegreya), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+
+  --board: #2b2f36; /* the slate board */
+  --board-deep: #1f2328; /* header, footer, recesses */
+  --panel: #23272d; /* a darker panel chalked onto the board */
+
+  --chalk: #f3f0e6; /* fresh white chalk */
+  --text: #d8d6cd; /* body chalk, slightly dusted */
+  --muted: #9a9da3; /* rubbed-out chalk */
+
+  --yellow: #e9c84a; /* the one accent */
+  --yellow-ink: #2a2a22;
+  --coral: #e58b80; /* underline scribbles, errors */
+
+  --line: rgba(243, 240, 230, 0.22);
+  --line-soft: rgba(243, 240, 230, 0.1);
+
+  --paper: #ece5d5; /* print matte for photographs */
+
+  --gutter: clamp(20px, 4vw, 56px);
+  --section-y: clamp(76px, 9vw, 136px);
+
+  --board-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='900'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02 .032' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .78 0 0 0 0 .8 0 0 0 0 .86 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: transparent;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  html {
+    background-color: var(--board);
+  }
+
+  ::selection {
+    background: var(--yellow);
+    color: var(--yellow-ink);
+  }
+
+  :focus-visible {
+    outline: 2px dashed var(--yellow);
+    outline-offset: 4px;
+  }
+
+  b,
+  strong {
+    color: var(--chalk);
+    font-weight: 700;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* ---------- Layout ---------- */
+  .page-shell {
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ---------- Chalk typography ---------- */
+  .h-hero {
+    margin: 0;
+    font-family: var(--font-chalk);
+    font-weight: 400;
+    font-size: clamp(3.15rem, 6.6vw, 5.6rem);
+    line-height: 1.02;
+    letter-spacing: 0.005em;
+    color: var(--chalk);
+    text-shadow:
+      0 0 1px rgba(255, 255, 255, 0.35),
+      0 2px 12px rgba(255, 255, 255, 0.06);
+  }
+
+  .h-hero .em {
+    display: block;
+    color: var(--yellow);
+  }
+
+  .h-section {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.8rem, 3.4vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--chalk);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.22);
+  }
+
+  /* Hand-written voice */
+  .hand {
+    font-family: var(--font-chalk);
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+
+  .quote-hand {
+    margin: 0;
+    font-family: var(--font-chalk);
+    font-size: clamp(1.75rem, 3.5vw, 2.85rem);
+    line-height: 1.32;
+    color: var(--chalk);
+    text-wrap: balance;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* A wobbling chalk underline under section titles. */
+  .h-section--marked::after {
+    content: "";
+    display: block;
+    width: 7.5rem;
+    height: 10px;
+    margin-top: 1.1rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='12' viewBox='0 0 140 12'%3E%3Cpath d='M2 8Q22 1 42 7T82 6T122 7T138 5' fill='none' stroke='%23e58b80' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")
+      no-repeat left center / contain;
+    opacity: 0.8;
+  }
+
+  /* ---------- Panels ---------- */
+  .panel {
+    position: relative;
+    background: color-mix(in srgb, var(--panel) 92%, transparent);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+      0 40px 80px -70px rgba(0, 0, 0, 0.9);
+  }
+
+  .panel-outline {
+    border: 1.5px dashed var(--line);
+  }
+
+  .panel-sheen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      640px 320px at 10% -6%,
+      rgba(255, 255, 255, 0.05),
+      transparent 70%
+    );
+  }
+
+  /* ---------- Chalk buttons & links ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    font-family: var(--font-chalk);
+    font-size: 1.24rem;
+    line-height: 1.15;
+    padding: 0.58rem 1.5rem 0.7rem;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .btn:active {
+    transform: translateY(1px) rotate(-0.4deg);
+  }
+
+  .btn[disabled],
+  .btn[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  .btn-solid {
+    color: var(--yellow-ink);
+    background: var(--yellow);
+    border: 0;
+    border-radius: 2px 5px 3px 6px / 5px 3px 6px 3px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 12px 28px -18px rgba(0, 0, 0, 0.95);
+  }
+
+  .btn-solid:hover {
+    transform: translateY(-1px) rotate(-0.5deg);
+    background: #f0d463;
+  }
+
+  .btn-outline {
+    color: var(--yellow);
+    background: transparent;
+    border: 1.5px dashed var(--yellow);
+    border-radius: 3px 6px 4px 6px / 6px 4px 6px 3px;
+  }
+
+  .btn-outline:hover {
+    transform: translateY(-1px) rotate(-0.5deg);
+    background: rgba(233, 200, 74, 0.08);
+  }
+
+  .btn-quiet {
+    color: var(--chalk);
+    background: transparent;
+    border: 1.5px solid transparent;
+    border-radius: 3px 6px 4px 6px / 6px 4px 6px 3px;
+  }
+
+  .btn-quiet:hover {
+    border-color: var(--line);
+    color: var(--chalk);
+  }
+
+  .btn-sm {
+    font-size: 1.05rem;
+    padding: 0.35rem 1rem 0.45rem;
+  }
+
+  .btn-md {
+    font-size: 1.15rem;
+    padding: 0.45rem 1.25rem 0.55rem;
+  }
+
+  .btn-lg {
+    font-size: 1.3rem;
+    padding: 0.6rem 1.7rem 0.72rem;
+  }
+
+  .link-hand {
+    font-family: var(--font-chalk);
+    font-size: 1.2rem;
+    line-height: 1.3;
+    color: var(--chalk);
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .link-hand:hover {
+    color: var(--yellow);
+  }
+
+  /* ---------- Navigation ---------- */
+  .nav-link {
+    position: relative;
+    padding-block: 0.35rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1.5px dashed transparent;
+    transition: border-color 160ms ease;
+  }
+
+  .nav-link:hover {
+    color: var(--chalk);
+  }
+
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
+    border-color: var(--yellow);
+  }
+
+  .nav-link[aria-current="page"] {
+    color: var(--chalk);
+  }
+
+  /* ---------- Photographs & tape ---------- */
+  .polaroid {
+    position: relative;
+    margin: 0;
+    transform: rotate(var(--tilt, 1.6deg));
+    transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .polaroid__frame {
+    position: relative;
+    padding: 9px 9px 11px;
+    background: var(--paper);
+    box-shadow:
+      0 28px 56px -34px rgba(0, 0, 0, 0.95),
+      0 4px 10px -6px rgba(0, 0, 0, 0.55);
+  }
+
+  /* Two strips of tape, one at each top corner. */
+  .polaroid__frame::before,
+  .polaroid__frame::after {
+    content: "";
+    position: absolute;
+    top: -13px;
+    z-index: 2;
+    width: clamp(58px, 26%, 92px);
+    height: 29px;
+    background: linear-gradient(
+      180deg,
+      rgba(228, 233, 238, 0.5),
+      rgba(202, 211, 220, 0.36)
+    );
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
+    -webkit-backdrop-filter: blur(1.5px);
+    backdrop-filter: blur(1.5px);
+    clip-path: polygon(2% 8%, 98% 0, 100% 88%, 96% 100%, 3% 96%, 0 52%);
+  }
+
+  .polaroid__frame::before {
+    left: -16px;
+    transform: rotate(-7deg);
+  }
+
+  .polaroid__frame::after {
+    right: -16px;
+    transform: rotate(6deg);
+  }
+
+  .polaroid__caption {
+    margin-top: 0.7rem;
+    transform: rotate(-1.2deg);
+  }
+
+  .polaroid__img {
+    filter: saturate(0.94) contrast(1.02);
+  }
+
+  .photo-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .photo-link:hover .polaroid {
+    transform: rotate(0deg) translateY(-4px);
+  }
+
+  /* ---------- Chalk marks ---------- */
+  .chalk-circle {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border: 1.5px solid var(--yellow);
+    border-radius: 50% 46% 52% 48% / 48% 52% 46% 54%;
+    font-family: var(--font-chalk);
+    color: var(--yellow);
+    transform: rotate(-1.5deg);
+  }
+
+  /* ---------- Tabs (auth) ---------- */
+  .chalk-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 1.4rem;
+  }
+
+  .chalk-tab {
+    padding: 0.14rem 0.78rem 0.24rem;
+    border: 2px solid transparent;
+    border-radius: 50% 48% 52% 46% / 55% 50% 50% 45%;
+    background: none;
+    font-family: var(--font-chalk);
+    font-size: 1.45rem;
+    line-height: 1.2;
+    color: var(--muted);
+    cursor: pointer;
+    transition:
+      color 180ms ease,
+      border-color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .chalk-tab:hover {
+    color: var(--chalk);
+  }
+
+  .chalk-tab[aria-selected="true"] {
+    color: var(--chalk);
+    border-color: var(--yellow);
+    transform: rotate(-1.6deg);
+  }
+
+  /* ---------- Fields ---------- */
+  .field-label {
+    display: block;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .field-input {
+    width: 100%;
+    padding: 0.55rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+    color: var(--chalk);
+    font-family: var(--font-body);
+    font-size: 1.04rem;
+    line-height: 1.5;
+    color-scheme: dark;
+    outline: none;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .field-input::placeholder {
+    color: color-mix(in srgb, var(--muted) 68%, transparent);
+  }
+
+  .field-input:hover {
+    border-bottom-color: var(--line);
+  }
+
+  .field-input:focus {
+    border-bottom-color: var(--yellow);
+  }
+
+  .field-input[aria-invalid="true"] {
+    border-bottom-color: color-mix(in srgb, var(--coral) 80%, transparent);
+  }
+
+  .field-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* ---------- Alerts ---------- */
+  .alert-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.7rem 0.85rem;
+    border: 1.5px dashed color-mix(in srgb, var(--coral) 65%, transparent);
+    border-radius: 5px;
+    background: rgba(229, 139, 128, 0.07);
+    color: #f0b7af;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .alert-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.7rem 0.85rem;
+    border: 1.5px dashed var(--line);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  /* ---------- Footer ---------- */
+  .footer-link {
+    font-size: 0.95rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .footer-link:hover {
+    color: var(--yellow);
+  }
+}
+
+/* The board itself: one fixed, seamless cloudy-slate sheet behind everything. */
+.board-texture {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--board);
+  background-image:
+    radial-gradient(
+      1100px 620px at 16% -8%,
+      rgba(122, 142, 164, 0.11),
+      transparent 64%
+    ),
+    radial-gradient(
+      900px 680px at 106% 28%,
+      rgba(233, 200, 74, 0.04),
+      transparent 62%
+    ),
+    var(--board-noise);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Fixed, non-interactive film grain over the whole board. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Autofill should keep the chalkboard, not paint a bright block. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: var(--chalk);
+  caret-color: var(--chalk);
+  transition: background-color 9999s ease-in-out 0s;
+  box-shadow: 0 0 0 1000px var(--board) inset;
+}
+
+/* The design supplies its own password visibility control. */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
