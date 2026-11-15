@@ -1,0 +1,70 @@
+# ============================================================
+# Better Memoire — Root .gitignore
+# Monorepo: backend (.NET) + frontend (Next.js) + docs
+# ============================================================
+
+# ── Old / Reference ──────────────────────────────────────────
+old_docs/
+
+# ── Tool-generated ───────────────────────────────────────────
+.codegraph/
+
+# ── OS ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE ──────────────────────────────────────────────────────
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+
+# ── Environment & Secrets ────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.env
+appsettings.Development.json
+appsettings.Production.json
+*service-account*.json
+*credentials*.json
+
+# ── .NET / Backend ───────────────────────────────────────────
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+[Pp]ublish/
+*.dll
+*.pdb
+*.exe
+*.cache
+*.log
+project.lock.json
+.aspire/
+
+# ── Node / Frontend ──────────────────────────────────────────
+node_modules/
+.next/
+out/
+dist/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# ── Testing ──────────────────────────────────────────────────
+coverage/
+test-results/
+playwright-report/
+blob-report/
+*.lcov
+
+# ── Docker ───────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ── Misc ─────────────────────────────────────────────────────
+*.tmp
+*.temp
+logs/
