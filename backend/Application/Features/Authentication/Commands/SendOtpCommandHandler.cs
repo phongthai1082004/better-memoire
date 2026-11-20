@@ -1,3 +1,4 @@
+using Application.Common.Logging;
 using Application.CQRS;
 using Application.Features.Authentication.Responses;
 using Application.Features.Authentication.Services;
@@ -37,7 +38,7 @@ namespace Application.Features.Authentication.Commands
 
             await emailService.SendOtpAsync(request.Email, code, otpSettings.ExpiryMinutes, cancellationToken);
 
-            logger.LogInformation("Verification code reissued for {Email}", request.Email);
+            logger.LogIfEnabled(LogLevel.Information, "Verification code reissued for {Email}", request.Email);
 
             return new MessageResponse(localizer["Auth.OtpSent"]);
         }

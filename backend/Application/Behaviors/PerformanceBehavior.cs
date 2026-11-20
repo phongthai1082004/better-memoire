@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Application.Common.Logging;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -15,7 +16,7 @@ namespace Application.Behaviors
             var elapsedMs = timer.ElapsedMilliseconds;
             if (elapsedMs > 500)
             {
-                logger.LogWarning("Long Running Request: {Name} ({Elapsed} ms) {@Request}", typeof(TRequest).Name, elapsedMs, request);
+                logger.LogIfEnabled(LogLevel.Warning, "Long Running Request: {Name} ({Elapsed} ms) {@Request}", typeof(TRequest).Name, elapsedMs, request);
             }
             return response;
         }

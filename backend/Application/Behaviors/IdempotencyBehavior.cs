@@ -33,7 +33,7 @@ namespace Application.Behaviors
                 logger.LogIfEnabled(LogLevel.Debug, "Idempotency cache hit for {RequestName}", typeof(TRequest).Name);
                 if (!string.Equals(cached.RequestHash, requestHash, StringComparison.Ordinal))
                 {
-                    logger.LogWarning("Idempotency payload mismatch (cache) for {RequestName}", typeof(TRequest).Name);
+                    logger.LogIfEnabled(LogLevel.Warning, "Idempotency payload mismatch (cache) for {RequestName}", typeof(TRequest).Name);
                     throw new UnprocessableEntityException(ErrorCode.IdempotencyPayloadMismatch);
                 }
                 if (cached.Status == IdempotencyStatus.Completed)
@@ -49,7 +49,7 @@ namespace Application.Behaviors
                 logger.LogIfEnabled(LogLevel.Debug, "Idempotency DB hit for {RequestName} status={Status}", typeof(TRequest).Name, existing.Status);
                 if (!string.Equals(existing.RequestHash, requestHash, StringComparison.Ordinal))
                 {
-                    logger.LogWarning("Idempotency payload mismatch (DB) for {RequestName}", typeof(TRequest).Name);
+                    logger.LogIfEnabled(LogLevel.Warning, "Idempotency payload mismatch (DB) for {RequestName}", typeof(TRequest).Name);
                     throw new UnprocessableEntityException(ErrorCode.IdempotencyPayloadMismatch);
                 }
                 if (existing.Status == IdempotencyStatus.Completed)

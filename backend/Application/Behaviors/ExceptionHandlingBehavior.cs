@@ -1,3 +1,4 @@
+using Application.Common.Logging;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -14,7 +15,7 @@ namespace Application.Behaviors
             }
             catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
             {
-                logger.LogWarning("Request {RequestName} was cancelled by client.", typeof(TRequest).Name);
+                logger.LogIfEnabled(LogLevel.Warning, "Request {RequestName} was cancelled by client.", typeof(TRequest).Name);
                 throw;
             }
         }

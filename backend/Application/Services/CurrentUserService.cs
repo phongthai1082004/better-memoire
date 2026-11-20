@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using System.Text;
+using Application.Common.Logging;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -26,7 +27,7 @@ namespace Application.Services
                 var request = context?.Request;
                 if (request?.Body == null)
                 {
-                    logger.LogDebug("Request payload unavailable");
+                    logger.LogIfEnabled(LogLevel.Debug, "Request payload unavailable");
                     _isPayloadRead = true;
                     return null;
                 }
@@ -51,7 +52,7 @@ namespace Application.Services
                 request.Body.Position = 0;
                 _isPayloadRead = true;
 
-                logger.LogDebug("Read request payload ({Length} chars)", _cachedPayload.Length);
+                logger.LogIfEnabled(LogLevel.Debug, "Read request payload ({Length} chars)", _cachedPayload.Length);
 
                 return _cachedPayload;
             }

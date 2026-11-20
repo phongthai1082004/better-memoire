@@ -36,13 +36,13 @@ namespace Infrastructure.Services
             }
             catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException)
             {
-                logger.LogWarning(ex, "OTP email delivery failed for {Email}", email);
+                logger.LogIfEnabled(LogLevel.Warning, ex, "OTP email delivery failed for {Email}", email);
                 throw new TransientFailureException(ErrorCode.AuthEmailUnavailable, ex);
             }
             if (!response.IsSuccessStatusCode)
             {
                 var body = await response.Content.ReadAsStringAsync(cancellationToken);
-                logger.LogWarning("OTP email provider returned {StatusCode} for {Email}: {Body}", (int)response.StatusCode, email, body.Length > 300 ? body[..300] : body);
+                logger.LogIfEnabled(LogLevel.Warning, "OTP email provider returned {StatusCode} for {Email}: {Body}", (int)response.StatusCode, email, body.Length > 300 ? body[..300] : body);
                 throw new TransientFailureException(ErrorCode.AuthEmailUnavailable);
             }
             logger.LogIfEnabled(LogLevel.Information, "OTP email accepted by provider for {Email}", email);

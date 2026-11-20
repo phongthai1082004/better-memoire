@@ -46,14 +46,14 @@ namespace Infrastructure.Persistence.Interceptors
                 {
                     if (entry.State == EntityState.Added)
                     {
-                        logger.LogDebug("Stamp created {Entity}", entry.Metadata.ClrType.Name);
+                        logger.LogIfEnabled(LogLevel.Debug, "Stamp created {Entity}", entry.Metadata.ClrType.Name);
                         auditable.CreatedOnUtc = utcNow;
                         auditable.CreatedBy = currentUserId;
                     }
 
                     if (entry.State == EntityState.Modified)
                     {
-                        logger.LogDebug("Stamp modified {Entity}", entry.Metadata.ClrType.Name);
+                        logger.LogIfEnabled(LogLevel.Debug, "Stamp modified {Entity}", entry.Metadata.ClrType.Name);
                         auditable.LastModifiedOnUtc = utcNow;
                         auditable.LastModifiedBy = currentUserId;
                     }

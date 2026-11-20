@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Application.Cache.Common;
+using Application.Common.Logging;
 using Domain.Enums;
 using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
@@ -15,12 +16,12 @@ namespace Infrastructure.Cache
 
         public async Task<T?> GetAsync<T>(string key)
         {
-            logger.LogDebug("Cache get {Key}", key);
+            logger.LogIfEnabled(LogLevel.Debug, "Cache get {Key}", key);
 
             RedisValue value = await redis.StringGetAsync(key);
             if (value.IsNullOrEmpty)
             {
-                logger.LogDebug("Cache miss {Key}", key);
+                logger.LogIfEnabled(LogLevel.Debug, "Cache miss {Key}", key);
                 return default;
             }
 
@@ -29,13 +30,13 @@ namespace Infrastructure.Cache
 
         public async Task<bool> RemoveAsync(string key)
         {
-            logger.LogDebug("Cache remove {Key}", key);
+            logger.LogIfEnabled(LogLevel.Debug, "Cache remove {Key}", key);
             return await redis.KeyDeleteAsync(key);
         }
 
         public async Task<bool> SetAsync<T>(string key, T value, TimeSpan? expiry = null, CacheCondition? condition = CacheCondition.Always)
         {
-            logger.LogDebug("Cache set {Key} condition={Condition} expiry={Expiry}", key, condition, expiry);
+            logger.LogIfEnabled(LogLevel.Debug, "Cache set {Key} condition={Condition} expiry={Expiry}", key, condition, expiry);
 
             var json = JsonSerializer.Serialize(value, JsonOptions);
 
@@ -51,7 +52,7 @@ namespace Infrastructure.Cache
 
         public async Task<bool> ExecuteScriptAsync(string script, string[] keys, object[]? args = null)
         {
-            logger.LogDebug("Cache script execute on {Keys}", string.Join(",", keys));
+            logger.LogIfEnabled(LogLevel.Debug, "Cache script execute on {Keys}", string.Join(",", keys));
 
             var redisKeys = Array.ConvertAll(keys, k => (RedisKey)k);
             var redisArgs = args is not null

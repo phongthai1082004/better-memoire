@@ -26,14 +26,14 @@ namespace Application.Behaviors
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Transaction failed and rolling back for {RequestName}", requestName);
+                logger.LogIfEnabled(LogLevel.Error, ex, "Transaction failed and rolling back for {RequestName}", requestName);
                 try
                 {
                     await transaction.RollbackAsync(cancellationToken);
                 }
                 catch (Exception rollbackEx)
                 {
-                    logger.LogError(rollbackEx, "Failed to rollback transaction for {RequestName}", requestName);
+                    logger.LogIfEnabled(LogLevel.Error, rollbackEx, "Failed to rollback transaction for {RequestName}", requestName);
                 }
                 throw translator.Translate(ex);
             }

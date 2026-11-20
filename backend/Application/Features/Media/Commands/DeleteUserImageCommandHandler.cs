@@ -1,3 +1,4 @@
+using Application.Common.Logging;
 using Application.CQRS;
 using Application.Features.Authentication.Responses;
 using Application.Interfaces.Services;
@@ -31,7 +32,7 @@ namespace Application.Features.Media.Commands
                 }
                 catch (Exception ex)
                 {
-                    logger.LogWarning(ex, "Could not delete R2 asset {PublicId}", image.PublicId);
+                    logger.LogIfEnabled(LogLevel.Warning, ex, "Could not delete R2 asset {PublicId}", image.PublicId);
                 }
             }
 

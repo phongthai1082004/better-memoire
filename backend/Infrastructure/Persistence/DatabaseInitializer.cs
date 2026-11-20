@@ -1,3 +1,4 @@
+using Application.Common.Logging;
 using Application.Interfaces.Database;
 using Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -18,20 +19,20 @@ namespace Infrastructure.Persistence
                 var pendingMigrations = await dbContext.Database.GetPendingMigrationsAsync();
                 if (pendingMigrations.Any())
                 {
-                    logger.LogInformation("Applying pending migrations for database: {Migrations}", string.Join(", ", pendingMigrations));
+                    logger.LogIfEnabled(LogLevel.Information, "Applying pending migrations for database: {Migrations}", string.Join(", ", pendingMigrations));
 
                     await dbContext.Database.MigrateAsync();
 
-                    logger.LogInformation("Database migration completed successfully.");
+                    logger.LogIfEnabled(LogLevel.Information, "Database migration completed successfully.");
                 }
                 else
                 {
-                    logger.LogInformation("Database is already up to date. No migrations to apply.");
+                    logger.LogIfEnabled(LogLevel.Information, "Database is already up to date. No migrations to apply.");
                 }
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "An error occurred while migrating the database.");
+                logger.LogIfEnabled(LogLevel.Error, ex, "An error occurred while migrating the database.");
                 throw;
             }
         }

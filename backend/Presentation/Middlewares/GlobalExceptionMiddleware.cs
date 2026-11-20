@@ -1,8 +1,8 @@
+using Application.Common.Logging;
 using Domain.Errors;
 using Domain.Exceptions.Common;
 using Domain.Exceptions.Idempotency;
 using Domain.Resources;
-using Infrastructure.Logging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Localization;

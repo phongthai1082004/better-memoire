@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using System.Security.Cryptography;
 using System.Text;
+using Application.Common.Logging;
 using Application.Interfaces.Services;
 using Domain.Configurations;
 using Domain.Errors;
@@ -36,7 +37,7 @@ namespace Infrastructure.Services
             using var response = await httpClient.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
-                logger.LogWarning("R2 delete failed for {PublicId}: {Status}", publicId, response.StatusCode);
+                logger.LogIfEnabled(LogLevel.Warning, "R2 delete failed for {PublicId}: {Status}", publicId, response.StatusCode);
                 throw new TransientFailureException(ErrorCode.MediaUploadUnavailable);
             }
         }
