@@ -30,20 +30,7 @@ namespace Domain.Entities.SampleBooks
         {
         }
 
-        public SampleBook(
-            string name,
-            string style,
-            string font,
-            string cover,
-            string? slug = null,
-            string? description = null,
-            string? category = null,
-            string[]? tags = null,
-            int? quantity = null,
-            string? coverUrl = null,
-            double? paperHeight = null,
-            double? paperWidth = null,
-            string? content = null)
+        public SampleBook(string name, string style, string font, string cover, string? slug = null, string? description = null, string? category = null, string[]? tags = null, int? quantity = null, string? coverUrl = null, double? paperHeight = null, double? paperWidth = null, string? content = null)
         {
             Name = name;
             Style = style;

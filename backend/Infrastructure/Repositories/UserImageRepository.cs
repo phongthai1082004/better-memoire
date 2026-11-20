@@ -7,25 +7,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Repositories
 {
-    public class UserImageRepository(
-        ApplicationDbContext context,
-        ILoggerFactory loggerFactory)
+    public class UserImageRepository(ApplicationDbContext context, ILoggerFactory loggerFactory)
         : BaseRepository<UserImage, Guid>(context, loggerFactory), IUserImageRepository
     {
-        public async Task<UserImage?> GetByIdForUserAsync(
-            Guid id,
-            Guid userId,
-            CancellationToken cancellationToken = default)
+        public async Task<UserImage?> GetByIdForUserAsync(Guid id, Guid userId, CancellationToken cancellationToken = default)
         {
-            return await dbSet.FirstOrDefaultAsync(
-                image => image.Id == id && image.UserId == userId,
-                cancellationToken);
+            return await dbSet.FirstOrDefaultAsync(image => image.Id == id && image.UserId == userId, cancellationToken);
         }
 
-        public async Task<IReadOnlyList<UserImage>> GetForUserAsync(
-            Guid userId,
-            int limit,
-            CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<UserImage>> GetForUserAsync(Guid userId, int limit, CancellationToken cancellationToken = default)
         {
             return await dbSet
                 .AsNoTracking()

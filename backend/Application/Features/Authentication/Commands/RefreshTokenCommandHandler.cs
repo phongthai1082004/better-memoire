@@ -8,10 +8,7 @@ using Domain.Exceptions.Common;
 
 namespace Application.Features.Authentication.Commands
 {
-    public class RefreshTokenCommandHandler(
-        IJwtService jwtService,
-        IUserRepository userRepository,
-        IAuthTokenIssuer tokenIssuer) : ICommandHandler<RefreshTokenCommand, AuthResponse>
+    public class RefreshTokenCommandHandler(IJwtService jwtService, IUserRepository userRepository, IAuthTokenIssuer tokenIssuer) : ICommandHandler<RefreshTokenCommand, AuthResponse>
     {
         public async Task<AuthResponse> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
         {

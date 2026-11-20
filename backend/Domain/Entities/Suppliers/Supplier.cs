@@ -41,19 +41,7 @@ namespace Domain.Entities.Suppliers
             Email = email;
         }
 
-        public void Update(
-            string name,
-            string contact,
-            string email,
-            string? taxCode,
-            string? address,
-            string? bankName,
-            string? bankBin,
-            string? bankAccountNumber,
-            string? bankAccountName,
-            string? contactPerson,
-            int? paymentTermDays,
-            int? leadTimeDays)
+        public void Update(string name, string contact, string email, string? taxCode, string? address, string? bankName, string? bankBin, string? bankAccountNumber, string? bankAccountName, string? contactPerson, int? paymentTermDays, int? leadTimeDays)
         {
             Name = name;
             Contact = contact;

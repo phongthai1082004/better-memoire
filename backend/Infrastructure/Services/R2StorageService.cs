@@ -1,38 +1,28 @@
+using System.Net.Http.Json;
+using System.Security.Cryptography;
+using System.Text;
 using Application.Interfaces.Services;
 using Domain.Configurations;
 using Domain.Errors;
 using Domain.Exceptions.Common;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Net.Http.Json;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Infrastructure.Services
 {
-    public class R2StorageService(
-        IOptions<R2Settings> options,
-        HttpClient httpClient,
-        ILogger<R2StorageService> logger) : IStorageService
+    public class R2StorageService(IOptions<R2Settings> options, HttpClient httpClient, ILogger<R2StorageService> logger) : IStorageService
     {
         private const string FolderPrefix = "echotrace/";
         private readonly R2Settings _settings = options.Value;
 
-        public Task<UploadTicket> CreateUploadTicketAsync(
-            string folder,
-            CancellationToken cancellationToken = default)
+        public Task<UploadTicket> CreateUploadTicketAsync(string folder, CancellationToken cancellationToken = default)
         {
             EnsureConfigured();
             if (!folder.StartsWith(FolderPrefix, StringComparison.Ordinal))
                 throw new BadRequestException(ErrorCode.MediaInvalidUrl);
-
             var expiry = DateTimeOffset.UtcNow.ToUnixTimeSeconds() + 600;
             var token = HmacHex($"{folder}:{expiry}");
-            return Task.FromResult(new UploadTicket(
-                _settings.WorkerUrl,
-                token,
-                folder,
-                expiry));
+            return Task.FromResult(new UploadTicket(_settings.WorkerUrl, token, folder, expiry));
         }
 
         public async Task DeleteAsync(string publicId, CancellationToken cancellationToken = default)
@@ -42,9 +32,7 @@ namespace Infrastructure.Services
             {
                 Content = JsonContent.Create(new { publicId })
             };
-            request.Headers.Authorization =
-                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _settings.AdminToken);
-
+            request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _settings.AdminToken);
             using var response = await httpClient.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
@@ -59,7 +47,6 @@ namespace Infrastructure.Services
                 return false;
             if (!Uri.TryCreate(_settings.WorkerUrl, UriKind.Absolute, out var worker))
                 return false;
-
             return uri.Scheme == Uri.UriSchemeHttps &&
                    string.Equals(uri.Host, worker.Host, StringComparison.OrdinalIgnoreCase) &&
                    uri.AbsolutePath.TrimStart('/').StartsWith(FolderPrefix, StringComparison.Ordinal);
@@ -67,9 +54,7 @@ namespace Infrastructure.Services
 
         private void EnsureConfigured()
         {
-            if (string.IsNullOrWhiteSpace(_settings.WorkerUrl) ||
-                string.IsNullOrWhiteSpace(_settings.UploadSecret) ||
-                string.IsNullOrWhiteSpace(_settings.AdminToken))
+            if (string.IsNullOrWhiteSpace(_settings.WorkerUrl) || string.IsNullOrWhiteSpace(_settings.UploadSecret) || string.IsNullOrWhiteSpace(_settings.AdminToken))
             {
                 throw new TransientFailureException(ErrorCode.MediaStorageNotConfigured);
             }

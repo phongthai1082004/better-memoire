@@ -8,13 +8,9 @@ using Domain.Exceptions.Common;
 
 namespace Application.Features.Users.Commands
 {
-    public class CreateAddressCommandHandler(
-        IAddressRepository addressRepository,
-        ICurrentUserService currentUser) : ICommandHandler<CreateAddressCommand, AddressResponse>
+    public class CreateAddressCommandHandler(IAddressRepository addressRepository, ICurrentUserService currentUser) : ICommandHandler<CreateAddressCommand, AddressResponse>
     {
-        public async Task<AddressResponse> Handle(
-            CreateAddressCommand request,
-            CancellationToken cancellationToken)
+        public async Task<AddressResponse> Handle(CreateAddressCommand request, CancellationToken cancellationToken)
         {
             var userId = currentUser.UserId
                          ?? throw new UnauthorizedException(ErrorCode.AuthRequired);
@@ -22,15 +18,7 @@ namespace Application.Features.Users.Commands
             if (request.IsDefault)
                 await addressRepository.ClearDefaultAsync(userId, cancellationToken);
 
-            var address = new Address(
-                userId,
-                request.RecipientName.Trim(),
-                request.Phone.Trim(),
-                request.Province.Trim(),
-                request.District.Trim(),
-                request.Ward.Trim(),
-                request.Street.Trim(),
-                request.IsDefault);
+            var address = new Address(userId, request.RecipientName.Trim(), request.Phone.Trim(), request.Province.Trim(), request.District.Trim(), request.Ward.Trim(), request.Street.Trim(), request.IsDefault);
 
             addressRepository.Insert(address);
             await addressRepository.SaveChangesAsync(cancellationToken);

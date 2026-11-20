@@ -321,4 +321,16 @@
   <data name="Address.Deleted" xml:space="preserve">
     <value>Address deleted.</value>
   </data>
+  <data name="Book.NotFound" xml:space="preserve">
+    <value>Book not found.</value>
+  </data>
+  <data name="Book.PageNotFound" xml:space="preserve">
+    <value>Book page not found.</value>
+  </data>
+  <data name="Book.PatchInvalid" xml:space="preserve">
+    <value>The page change is invalid.</value>
+  </data>
+  <data name="Book.PageTooLarge" xml:space="preserve">
+    <value>The page document is too large.</value>
+  </data>
 </root>

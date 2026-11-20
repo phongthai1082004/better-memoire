@@ -18,7 +18,6 @@ using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using StackExchange.Redis;
 
 namespace Infrastructure
@@ -55,6 +54,7 @@ namespace Infrastructure
             services.AddScoped<IUserImageRepository, UserImageRepository>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
 
             // External services
             services.AddHttpClient<IEmailService, ResendEmailService>();

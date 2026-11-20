@@ -10,14 +10,10 @@ namespace Application.Features.Notifications.Queries
     public record GetNotificationsQuery(int Limit) : IQuery<NotificationListResponse>;
     public record GetUnreadNotificationCountQuery : IQuery<int>;
 
-    public class GetNotificationsQueryHandler(
-        INotificationRepository notificationRepository,
-        ICurrentUserService currentUser)
+    public class GetNotificationsQueryHandler(INotificationRepository notificationRepository, ICurrentUserService currentUser)
         : IQueryHandler<GetNotificationsQuery, NotificationListResponse>
     {
-        public async Task<NotificationListResponse> Handle(
-            GetNotificationsQuery request,
-            CancellationToken cancellationToken)
+        public async Task<NotificationListResponse> Handle(GetNotificationsQuery request, CancellationToken cancellationToken)
         {
             var userId = currentUser.UserId
                          ?? throw new UnauthorizedException(ErrorCode.AuthRequired);
@@ -26,20 +22,14 @@ namespace Application.Features.Notifications.Queries
             var items = await notificationRepository.GetForUserAsync(userId, limit, cancellationToken);
             var unread = await notificationRepository.CountUnreadAsync(userId, cancellationToken);
 
-            return new NotificationListResponse(
-                items.Select(NotificationResponse.From).ToList(),
-                unread);
+            return new NotificationListResponse(items.Select(NotificationResponse.From).ToList(), unread);
         }
     }
 
-    public class GetUnreadNotificationCountQueryHandler(
-        INotificationRepository notificationRepository,
-        ICurrentUserService currentUser)
+    public class GetUnreadNotificationCountQueryHandler(INotificationRepository notificationRepository, ICurrentUserService currentUser)
         : IQueryHandler<GetUnreadNotificationCountQuery, int>
     {
-        public async Task<int> Handle(
-            GetUnreadNotificationCountQuery request,
-            CancellationToken cancellationToken)
+        public async Task<int> Handle(GetUnreadNotificationCountQuery request, CancellationToken cancellationToken)
         {
             var userId = currentUser.UserId
                          ?? throw new UnauthorizedException(ErrorCode.AuthRequired);

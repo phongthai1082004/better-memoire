@@ -23,17 +23,7 @@ namespace Domain.Entities.Media
         {
         }
 
-        public UserImage(
-            Guid userId,
-            string url,
-            string publicId,
-            string? thumbUrl = null,
-            int? width = null,
-            int? height = null,
-            int? size = null,
-            string? mimeType = null,
-            string? originalName = null,
-            string? contentHash = null)
+        public UserImage(Guid userId, string url, string publicId, string? thumbUrl = null, int? width = null, int? height = null, int? size = null, string? mimeType = null, string? originalName = null, string? contentHash = null)
         {
             UserId = userId;
             Url = url;

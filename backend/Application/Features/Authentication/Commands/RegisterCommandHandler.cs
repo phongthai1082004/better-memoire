@@ -1,3 +1,4 @@
+using Application.Common.Logging;
 using Application.CQRS;
 using Application.Features.Authentication.Responses;
 using Application.Features.Authentication.Services;
@@ -9,16 +10,9 @@ using Domain.Enums.Users;
 using Domain.Errors;
 using Domain.Exceptions.Common;
 using Microsoft.Extensions.Logging;
-
 namespace Application.Features.Authentication.Commands
 {
-    public class RegisterCommandHandler(
-        IUserRepository userRepository,
-        IJwtService jwtService,
-        IEmailService emailService,
-        OtpAttemptCounter attemptCounter,
-        OtpSettings otpSettings,
-        ILogger<RegisterCommandHandler> logger) : ICommandHandler<RegisterCommand, RegisterResponse>
+    public class RegisterCommandHandler(IUserRepository userRepository, IJwtService jwtService, IEmailService emailService, OtpAttemptCounter attemptCounter, OtpSettings otpSettings, ILogger<RegisterCommandHandler> logger) : ICommandHandler<RegisterCommand, RegisterResponse>
     {
         public async Task<RegisterResponse> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
@@ -33,11 +27,7 @@ namespace Application.Features.Authentication.Commands
             User user;
             if (existing is null)
             {
-                user = new User(
-                    request.Email,
-                    request.FullName,
-                    jwtService.HashPassword(request.Password),
-                    request.PhoneNumber);
+                user = new User(request.Email, request.FullName, jwtService.HashPassword(request.Password), request.PhoneNumber);
 
                 if (!string.IsNullOrWhiteSpace(request.AvatarUrl))
                     user.UpdateProfile(request.FullName, request.PhoneNumber, request.AvatarUrl);
@@ -47,10 +37,7 @@ namespace Application.Features.Authentication.Commands
             else
             {
                 user = existing;
-                user.UpdateProfile(
-                    request.FullName,
-                    request.PhoneNumber,
-                    string.IsNullOrWhiteSpace(request.AvatarUrl) ? user.AvatarUrl : request.AvatarUrl);
+                user.UpdateProfile(request.FullName, request.PhoneNumber, string.IsNullOrWhiteSpace(request.AvatarUrl) ? user.AvatarUrl : request.AvatarUrl);
                 user.ChangePassword(jwtService.HashPassword(request.Password));
             }
 
@@ -59,22 +46,11 @@ namespace Application.Features.Authentication.Commands
             await attemptCounter.ResetAsync(request.Email);
             user.AddToken(code, TokenType.Otp, DateTimeOffset.UtcNow.AddMinutes(otpSettings.ExpiryMinutes));
 
-            await emailService.SendOtpAsync(
-                request.Email,
-                code,
-                otpSettings.ExpiryMinutes,
-                cancellationToken);
+            await emailService.SendOtpAsync(request.Email, code, otpSettings.ExpiryMinutes, cancellationToken);
 
-            logger.LogInformation("Registration verification code issued for {Email}", request.Email);
+            logger.LogIfEnabled(LogLevel.Information, "Registration verification code issued for {Email}", request.Email);
 
-            return new RegisterResponse(
-                user.Email,
-                user.FullName,
-                user.PhoneNumber,
-                user.AvatarUrl,
-                user.Status,
-                user.Role,
-                OtpRequired: true);
+            return new RegisterResponse(user.Email, user.FullName, user.PhoneNumber, user.AvatarUrl, user.Status, user.Role, OtpRequired: true);
         }
     }
 }

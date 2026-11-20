@@ -1,4 +1,4 @@
-﻿
+
 namespace Domain.Abstractions.Auditable
 {
     /// <summary>Entity is logically deleted instead of physically removed.</summary>

@@ -1,4 +1,4 @@
-﻿namespace Application.Interfaces.Services
+namespace Application.Interfaces.Services
 {
     /// <summary>
     /// Access to the current HTTP request identity and payload.
@@ -9,7 +9,7 @@
         Guid? UserId { get; }
 
         /// <summary>Raw value of the <c>Idempotency-Key</c> request header.</summary>
-        string? Idempotency {  get; }
+        string? Idempotency { get; }
 
         /// <summary>Request identity ("METHOD /path?query") used to scope idempotency keys.</summary>
         string Endpoint { get; }

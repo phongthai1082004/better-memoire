@@ -23,6 +23,8 @@ namespace Domain.Entities.Books
         public double? PaperHeight { get; private set; }
         public double? PaperWidth { get; private set; }
         public int PageCount { get; private set; }
+        public int SchemaVersion { get; private set; } = 2;
+        public long LastEventSeq { get; private set; }
 
         public IReadOnlyCollection<BookPage> Pages => _pages.AsReadOnly();
 
@@ -30,17 +32,7 @@ namespace Domain.Entities.Books
         {
         }
 
-        public Book(
-            Guid userId,
-            string title,
-            string type,
-            string style,
-            string font,
-            string cover,
-            Guid? sampleBookId = null,
-            string? coverUrl = null,
-            double? paperHeight = null,
-            double? paperWidth = null)
+        public Book(Guid userId, string title, string type, string style, string font, string cover, Guid? sampleBookId = null, string? coverUrl = null, double? paperHeight = null, double? paperWidth = null)
         {
             UserId = userId;
             Title = title;
@@ -54,14 +46,7 @@ namespace Domain.Entities.Books
             PaperWidth = paperWidth;
         }
 
-        public void UpdateMetadata(
-            string title,
-            string style,
-            string font,
-            string cover,
-            string? coverUrl,
-            double? paperHeight,
-            double? paperWidth)
+        public void UpdateMetadata(string title, string style, string font, string cover, string? coverUrl, double? paperHeight, double? paperWidth)
         {
             Title = title;
             Style = style;
@@ -107,6 +92,8 @@ namespace Domain.Entities.Books
                 return false;
 
             _pages.Remove(page);
+            for (var index = 0; index < _pages.Count; index++)
+                _pages[index].SetPosition(index);
             PageCount = _pages.Count;
             return true;
         }
@@ -121,5 +108,32 @@ namespace Domain.Entities.Books
         }
 
         public void RecalculatePageCount() => PageCount = _pages.Count;
+
+        public long NextEventSeq() => ++LastEventSeq;
+
+        public void UpdateTitle(string title) => Title = title;
+
+        public bool ReorderPages(IReadOnlyList<string> pageIds)
+        {
+            if (pageIds.Count != _pages.Count)
+                return false;
+
+            var ordered = new List<BookPage>(_pages.Count);
+            foreach (var pageId in pageIds)
+            {
+                var page = _pages.FirstOrDefault(item => item.Id == pageId);
+                if (page is null)
+                    return false;
+                ordered.Add(page);
+            }
+
+            for (var index = 0; index < ordered.Count; index++)
+                ordered[index].SetPosition(index);
+
+            _pages.Clear();
+            _pages.AddRange(ordered);
+            PageCount = _pages.Count;
+            return true;
+        }
     }
 }

@@ -109,7 +109,7 @@ export function NotificationsBell({
   }
 
   return (
-    <div ref={container} className="relative flex h-10 items-center">
+    <div ref={container} className="relative flex h-12 items-center">
       <button
         type="button"
         onClick={() => {
@@ -118,9 +118,9 @@ export function NotificationsBell({
         }}
         aria-label={copy.open}
         aria-expanded={open}
-        className="btn btn-outline btn-sm relative h-10 w-10 !border-line !p-0 !text-chalk hover:!border-line hover:!bg-white/5 hover:!text-chalk"
+        className="btn btn-outline btn-sm relative h-12 w-12 !border-line !p-0 !text-chalk hover:!border-line hover:!bg-white/5 hover:!text-chalk"
       >
-        <Bell size={17} />
+        <Bell size={18} />
         {unread > 0 && (
           <span className="absolute -right-1.5 -top-1.5 grid h-4 min-w-4 place-items-center rounded-full bg-coral px-1 font-mono text-[9px] font-bold leading-none text-board-deep">
             {unread > 9 ? "9+" : unread}

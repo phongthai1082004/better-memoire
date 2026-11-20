@@ -36,10 +36,7 @@ namespace Presentation.Controllers
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken cancellationToken)
         {
-            var result = await _mediator.Send(
-                new RegisterCommand(request.Email, request.FullName, request.Password, request.PhoneNumber, request.AvatarUrl),
-                cancellationToken);
-
+            var result = await _mediator.Send(new RegisterCommand(request.Email, request.FullName, request.Password, request.PhoneNumber, request.AvatarUrl), cancellationToken);
             return StatusCode(StatusCodes.Status201Created, result);
         }
 
@@ -60,10 +57,7 @@ namespace Presentation.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> VerifyOtp([FromBody] VerifyOtpRequest request, CancellationToken cancellationToken)
         {
-            var result = await _mediator.Send(
-                new VerifyOtpCommand(request.Email, request.Otp, request.Password, request.FullName, request.PhoneNumber),
-                cancellationToken);
-
+            var result = await _mediator.Send(new VerifyOtpCommand(request.Email, request.Otp, request.Password, request.FullName, request.PhoneNumber), cancellationToken);
             return Ok(result);
         }
 
@@ -113,9 +107,7 @@ namespace Presentation.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> UpdateMe(
-            [FromBody] UpdateMeRequest request,
-            CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateMe([FromBody] UpdateMeRequest request, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(
                 new UpdateMeCommand(
@@ -134,14 +126,9 @@ namespace Presentation.Controllers
         [ProducesResponseType(typeof(MessageResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> ChangePassword(
-            [FromBody] ChangeMyPasswordRequest request,
-            CancellationToken cancellationToken)
+        public async Task<IActionResult> ChangePassword([FromBody] ChangeMyPasswordRequest request, CancellationToken cancellationToken)
         {
-            var result = await _mediator.Send(
-                new ChangeMyPasswordCommand(request.CurrentPassword, request.NewPassword),
-                cancellationToken);
-
+            var result = await _mediator.Send(new ChangeMyPasswordCommand(request.CurrentPassword, request.NewPassword), cancellationToken);
             return Ok(result);
         }
 
@@ -158,9 +145,7 @@ namespace Presentation.Controllers
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateAddress(
-            [FromBody] AddressRequest request,
-            CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateAddress([FromBody] AddressRequest request, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(
                 new CreateAddressCommand(
@@ -178,10 +163,7 @@ namespace Presentation.Controllers
 
         [HttpPut("me/addresses/{id:int}")]
         [Authorize]
-        public async Task<IActionResult> UpdateAddress(
-            int id,
-            [FromBody] AddressRequest request,
-            CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateAddress(int id, [FromBody] AddressRequest request, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(
                 new UpdateAddressCommand(

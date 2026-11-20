@@ -4,7 +4,13 @@ import { Reveal } from "@/components/motion/reveal";
 import { buttonStyles } from "@/components/ui/button";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
-export function FinalCta({ copy }: { copy: Dictionary["cta"] }) {
+export function FinalCta({
+  copy,
+  startHref,
+}: {
+  copy: Dictionary["cta"];
+  startHref: string;
+}) {
   return (
     <section className="py-16 md:py-24">
       <div className="page-shell">
@@ -14,7 +20,7 @@ export function FinalCta({ copy }: { copy: Dictionary["cta"] }) {
             <div className="relative md:pb-1">
               <p className="max-w-[34ch] text-body">{copy.body}</p>
               <Link
-                href="/auth?mode=register"
+                href={startHref}
                 className={buttonStyles({
                   size: "lg",
                   className: "group mt-7",

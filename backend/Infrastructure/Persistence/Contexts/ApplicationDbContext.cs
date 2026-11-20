@@ -35,6 +35,7 @@ namespace Infrastructure.Persistence.Contexts
         // Books & catalog
         public DbSet<Book> Books => Set<Book>();
         public DbSet<BookPage> BookPages => Set<BookPage>();
+        public DbSet<BookPageEvent> BookPageEvents => Set<BookPageEvent>();
         public DbSet<SampleBook> SampleBooks => Set<SampleBook>();
         public DbSet<DecorAsset> DecorAssets => Set<DecorAsset>();
         public DbSet<PrintOption> PrintOptions => Set<PrintOption>();

@@ -1,10 +1,6 @@
 namespace Application.Interfaces.Services
 {
-    public record UploadTicket(
-        string UploadUrl,
-        string Token,
-        string Folder,
-        long Expiry);
+    public record UploadTicket(string UploadUrl, string Token, string Folder, long Expiry);
 
     public interface IStorageService
     {

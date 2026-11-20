@@ -92,10 +92,10 @@ export function AuthPanel({
       </div>
 
       <div className="pt-5">
-        <h1 className="hand text-[clamp(2rem,3vw,2.4rem)] leading-[1.06] text-chalk">
+        <h1 className="hand text-[clamp(2.2rem,3.4vw,2.75rem)] leading-[1.06] text-chalk">
           {title}
         </h1>
-        <p className="mt-2 max-w-[46ch] text-[0.92rem] leading-relaxed text-body">
+        <p className="mt-2 max-w-[46ch] text-[1.02rem] leading-relaxed text-body">
           {subtitle}
         </p>
       </div>

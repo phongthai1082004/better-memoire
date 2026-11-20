@@ -1,4 +1,4 @@
-﻿using Domain.Abstractions.Repository.Common;
+using Domain.Abstractions.Repository.Common;
 
 namespace Domain.Abstractions.Repository
 {

@@ -8,9 +8,7 @@ namespace Infrastructure.Services
 {
     public class GoogleTokenValidator(IConfiguration configuration) : IGoogleTokenValidator
     {
-        public async Task<GoogleUserInfo> ValidateAsync(
-            string idToken,
-            CancellationToken cancellationToken = default)
+        public async Task<GoogleUserInfo> ValidateAsync(string idToken, CancellationToken cancellationToken = default)
         {
             var clientId = configuration["Google:ClientId"];
             if (string.IsNullOrWhiteSpace(clientId))
@@ -18,12 +16,10 @@ namespace Infrastructure.Services
 
             try
             {
-                var payload = await GoogleJsonWebSignature.ValidateAsync(
-                    idToken,
-                    new GoogleJsonWebSignature.ValidationSettings
-                    {
-                        Audience = [clientId]
-                    });
+                var payload = await GoogleJsonWebSignature.ValidateAsync(idToken, new GoogleJsonWebSignature.ValidationSettings
+                {
+                    Audience = [clientId]
+                });
 
                 if (!payload.EmailVerified)
                     throw new UnauthorizedException(ErrorCode.AuthGoogleEmailNotVerified);
@@ -31,12 +27,7 @@ namespace Infrastructure.Services
                 if (string.IsNullOrWhiteSpace(payload.Email))
                     throw new UnauthorizedException(ErrorCode.AuthGoogleNoEmail);
 
-                return new GoogleUserInfo(
-                    payload.Subject,
-                    payload.Email,
-                    payload.EmailVerified,
-                    payload.Name,
-                    payload.Picture);
+                return new GoogleUserInfo(payload.Subject, payload.Email, payload.EmailVerified, payload.Name, payload.Picture);
             }
             catch (TransientFailureException)
             {

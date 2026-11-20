@@ -1,4 +1,4 @@
-﻿namespace Application.Interfaces.Database
+namespace Application.Interfaces.Database
 {
     /// <summary>Applies pending EF Core migrations at application startup.</summary>
     public interface IDatabaseInitializer

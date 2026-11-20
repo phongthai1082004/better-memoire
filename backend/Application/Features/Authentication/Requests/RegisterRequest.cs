@@ -1,10 +1,4 @@
-﻿namespace Application.Features.Authentication.Requests
+namespace Application.Features.Authentication.Requests
 {
-    public record RegisterRequest(
-        string Email,
-        string FullName,
-        string Password,
-        string? PhoneNumber,
-        string AvatarUrl
-    );
+    public record RegisterRequest(string Email, string FullName, string Password, string? PhoneNumber, string AvatarUrl);
 }

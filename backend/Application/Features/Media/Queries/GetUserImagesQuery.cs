@@ -9,14 +9,10 @@ namespace Application.Features.Media.Queries
 {
     public record GetUserImagesQuery(int Limit) : IQuery<IReadOnlyList<UserImageResponse>>;
 
-    public class GetUserImagesQueryHandler(
-        IUserImageRepository imageRepository,
-        ICurrentUserService currentUser)
+    public class GetUserImagesQueryHandler(IUserImageRepository imageRepository, ICurrentUserService currentUser)
         : IQueryHandler<GetUserImagesQuery, IReadOnlyList<UserImageResponse>>
     {
-        public async Task<IReadOnlyList<UserImageResponse>> Handle(
-            GetUserImagesQuery request,
-            CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<UserImageResponse>> Handle(GetUserImagesQuery request, CancellationToken cancellationToken)
         {
             var userId = currentUser.UserId
                          ?? throw new UnauthorizedException(ErrorCode.AuthRequired);

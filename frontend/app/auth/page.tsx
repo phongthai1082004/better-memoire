@@ -48,8 +48,8 @@ export default async function AuthPage({
       <AuthVisual copy={t.auth.visual} imageAlt={t.images.heroPolaroids} />
 
       <section className="flex min-h-[100dvh] flex-col px-5 pb-12 pt-5 sm:px-9 lg:px-14">
-        <div className="mx-auto mt-10 flex w-full max-w-[460px] flex-1 flex-col ">
-          <div className="flex h-10 items-center lg:hidden">
+        <div className="mx-auto mt-10 flex w-full max-w-[560px] flex-1 flex-col ">
+          <div className="flex h-12 items-center lg:hidden">
             <Brand />
           </div>
 

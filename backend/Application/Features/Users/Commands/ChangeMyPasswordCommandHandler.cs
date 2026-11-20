@@ -9,11 +9,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Application.Features.Users.Commands
 {
-    public class ChangeMyPasswordCommandHandler(
-        IUserRepository userRepository,
-        ICurrentUserService currentUser,
-        IJwtService jwtService,
-        IStringLocalizer<Message> localizer) : ICommandHandler<ChangeMyPasswordCommand, MessageResponse>
+    public class ChangeMyPasswordCommandHandler(IUserRepository userRepository, ICurrentUserService currentUser, IJwtService jwtService, IStringLocalizer<Message> localizer) : ICommandHandler<ChangeMyPasswordCommand, MessageResponse>
     {
         public async Task<MessageResponse> Handle(ChangeMyPasswordCommand request, CancellationToken cancellationToken)
         {

@@ -1,4 +1,4 @@
-﻿namespace Domain.Abstractions.Events
+namespace Domain.Abstractions.Events
 {
     public abstract record DomainEvent : IDomainEvent
     {

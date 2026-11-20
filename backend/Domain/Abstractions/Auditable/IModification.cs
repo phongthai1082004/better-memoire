@@ -1,4 +1,4 @@
-﻿namespace Domain.Abstractions.Auditable
+namespace Domain.Abstractions.Auditable
 {
     /// <summary>Entity records who and when it was last modified.</summary>
     public interface IModificationAuditable

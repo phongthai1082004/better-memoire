@@ -1,4 +1,4 @@
-﻿namespace Domain.Abstractions.Entities
+namespace Domain.Abstractions.Entities
 {
     public abstract class GuidEntity : BaseEntity<Guid>
     {

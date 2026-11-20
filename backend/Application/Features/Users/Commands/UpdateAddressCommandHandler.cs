@@ -7,13 +7,9 @@ using Domain.Exceptions.Common;
 
 namespace Application.Features.Users.Commands
 {
-    public class UpdateAddressCommandHandler(
-        IAddressRepository addressRepository,
-        ICurrentUserService currentUser) : ICommandHandler<UpdateAddressCommand, AddressResponse>
+    public class UpdateAddressCommandHandler(IAddressRepository addressRepository, ICurrentUserService currentUser) : ICommandHandler<UpdateAddressCommand, AddressResponse>
     {
-        public async Task<AddressResponse> Handle(
-            UpdateAddressCommand request,
-            CancellationToken cancellationToken)
+        public async Task<AddressResponse> Handle(UpdateAddressCommand request, CancellationToken cancellationToken)
         {
             var userId = currentUser.UserId
                          ?? throw new UnauthorizedException(ErrorCode.AuthRequired);
@@ -31,13 +27,7 @@ namespace Application.Features.Users.Commands
                 address.UnsetDefault();
             }
 
-            address.Update(
-                request.RecipientName.Trim(),
-                request.Phone.Trim(),
-                request.Province.Trim(),
-                request.District.Trim(),
-                request.Ward.Trim(),
-                request.Street.Trim());
+            address.Update(request.RecipientName.Trim(), request.Phone.Trim(), request.Province.Trim(), request.District.Trim(), request.Ward.Trim(), request.Street.Trim());
 
             return AddressResponse.From(address);
         }

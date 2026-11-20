@@ -7,9 +7,7 @@ using Domain.Exceptions.Common;
 
 namespace Application.Features.Users.Commands
 {
-    public class UpdateMeCommandHandler(
-        IUserRepository userRepository,
-        ICurrentUserService currentUser) : ICommandHandler<UpdateMeCommand, UserProfileResponse>
+    public class UpdateMeCommandHandler(IUserRepository userRepository, ICurrentUserService currentUser) : ICommandHandler<UpdateMeCommand, UserProfileResponse>
     {
         public async Task<UserProfileResponse> Handle(UpdateMeCommand request, CancellationToken cancellationToken)
         {
@@ -19,10 +17,7 @@ namespace Application.Features.Users.Commands
             var user = await userRepository.GetByIdAsync([userId], cancellationToken)
                        ?? throw new NotFoundException(ErrorCode.NotFound);
 
-            user.UpdateProfile(
-                request.FullName,
-                request.PhoneNumber,
-                request.AvatarUrl ?? user.AvatarUrl);
+            user.UpdateProfile(request.FullName, request.PhoneNumber, request.AvatarUrl ?? user.AvatarUrl);
             user.UpdatePreferences(request.Locale, request.MarketingConsent);
 
             return UserProfileResponse.From(user);

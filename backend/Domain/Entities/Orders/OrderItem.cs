@@ -47,20 +47,7 @@ namespace Domain.Entities.Orders
         {
         }
 
-        public OrderItem(
-            Guid bookId,
-            string bookTitle,
-            int pageCount,
-            int quantity,
-            int unitPrice,
-            int unitCost,
-            int lineTotal,
-            string contentSnapshot,
-            Guid[]? imageIds = null,
-            Guid? coverOptionId = null,
-            Guid? paperOptionId = null,
-            Guid? sizeOptionId = null,
-            int? reprintOfItemId = null)
+        public OrderItem(Guid bookId, string bookTitle, int pageCount, int quantity, int unitPrice, int unitCost, int lineTotal, string contentSnapshot, Guid[]? imageIds = null, Guid? coverOptionId = null, Guid? paperOptionId = null, Guid? sizeOptionId = null, int? reprintOfItemId = null)
         {
             BookId = bookId;
             BookTitle = bookTitle;

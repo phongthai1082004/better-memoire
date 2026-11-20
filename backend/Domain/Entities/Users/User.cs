@@ -145,13 +145,7 @@ namespace Domain.Entities.Users
             FirstUtmCampaign = Normalise(campaign, 128);
         }
 
-        public UserToken AddToken(
-            string rawToken,
-            TokenType type,
-            DateTimeOffset expiresAt,
-            string? userAgent = null,
-            string? ip = null,
-            string? deviceId = null)
+        public UserToken AddToken(string rawToken, TokenType type, DateTimeOffset expiresAt, string? userAgent = null, string? ip = null, string? deviceId = null)
         {
             var token = new UserToken(Id, rawToken, type, expiresAt, userAgent, ip, deviceId);
             _tokens.Add(token);
@@ -207,12 +201,7 @@ namespace Domain.Entities.Users
                 token.Revoke();
         }
 
-        public void AddExternalToken(
-            ExternalProvider provider,
-            string providerUserId,
-            string accessToken,
-            string? refreshToken,
-            DateTimeOffset? expiresAt)
+        public void AddExternalToken(ExternalProvider provider, string providerUserId, string accessToken, string? refreshToken, DateTimeOffset? expiresAt)
         {
             if (_externalTokens.Any(t => t.Provider == provider))
                 throw new DomainRuleException(ErrorCode.UserExternalTokenExists);
@@ -220,11 +209,7 @@ namespace Domain.Entities.Users
             _externalTokens.Add(new ExternalToken(Id, provider, providerUserId, accessToken, refreshToken, expiresAt));
         }
 
-        public void UpdateExternalToken(
-            ExternalProvider provider,
-            string accessToken,
-            string? refreshToken,
-            DateTimeOffset? expiresAt)
+        public void UpdateExternalToken(ExternalProvider provider, string accessToken, string? refreshToken, DateTimeOffset? expiresAt)
         {
             var token = _externalTokens.FirstOrDefault(t => t.Provider == provider)
                 ?? throw new DomainRuleException(ErrorCode.UserExternalTokenMissing);
@@ -244,14 +229,7 @@ namespace Domain.Entities.Users
             return token != null && token.IsValid(now);
         }
 
-        public Address AddAddress(
-            string recipientName,
-            string phone,
-            string province,
-            string district,
-            string ward,
-            string street,
-            bool isDefault)
+        public Address AddAddress(string recipientName, string phone, string province, string district, string ward, string street, bool isDefault)
         {
             if (isDefault)
                 ClearDefaultAddress();

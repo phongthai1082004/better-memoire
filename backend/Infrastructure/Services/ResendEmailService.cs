@@ -1,3 +1,6 @@
+using System.Net;
+using System.Net.Http.Json;
+using Application.Common.Logging;
 using Application.Interfaces.Services;
 using Domain.Errors;
 using Domain.Exceptions.Common;
@@ -5,34 +8,20 @@ using Domain.Resources;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using System.Net;
-using System.Net.Http.Json;
-
 namespace Infrastructure.Services
 {
-    public class ResendEmailService(
-        HttpClient httpClient,
-        IConfiguration configuration,
-        IStringLocalizer<Message> localizer,
-        ILogger<ResendEmailService> logger) : IEmailService
+    public class ResendEmailService(HttpClient httpClient, IConfiguration configuration, IStringLocalizer<Message> localizer, ILogger<ResendEmailService> logger) : IEmailService
     {
         private readonly string? _apiKey = configuration["Resend:ApiKey"];
         private readonly string _from = configuration["Resend:From"] ?? "onboarding@resend.dev";
         private readonly string _baseUrl = (configuration["Resend:BaseUrl"] ?? "https://api.resend.com").TrimEnd('/');
 
-        public async Task SendOtpAsync(
-            string email,
-            string code,
-            int expiryMinutes,
-            CancellationToken cancellationToken = default)
+        public async Task SendOtpAsync(string email, string code, int expiryMinutes, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrWhiteSpace(_apiKey))
                 throw new TransientFailureException(ErrorCode.AuthEmailNotConfigured);
-
             httpClient.Timeout = TimeSpan.FromSeconds(15);
-            httpClient.DefaultRequestHeaders.Authorization =
-                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _apiKey);
-
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _apiKey);
             var payload = new
             {
                 from = _from,
@@ -40,7 +29,6 @@ namespace Infrastructure.Services
                 subject = localizer["Email.OtpSubject"].Value,
                 html = BuildHtml(code, expiryMinutes)
             };
-
             HttpResponseMessage response;
             try
             {
@@ -51,20 +39,13 @@ namespace Infrastructure.Services
                 logger.LogWarning(ex, "OTP email delivery failed for {Email}", email);
                 throw new TransientFailureException(ErrorCode.AuthEmailUnavailable, ex);
             }
-
             if (!response.IsSuccessStatusCode)
             {
                 var body = await response.Content.ReadAsStringAsync(cancellationToken);
-                logger.LogWarning(
-                    "OTP email provider returned {StatusCode} for {Email}: {Body}",
-                    (int)response.StatusCode,
-                    email,
-                    body.Length > 300 ? body[..300] : body);
-
+                logger.LogWarning("OTP email provider returned {StatusCode} for {Email}: {Body}", (int)response.StatusCode, email, body.Length > 300 ? body[..300] : body);
                 throw new TransientFailureException(ErrorCode.AuthEmailUnavailable);
             }
-
-            logger.LogInformation("OTP email accepted by provider for {Email}", email);
+            logger.LogIfEnabled(LogLevel.Information, "OTP email accepted by provider for {Email}", email);
         }
 
         private string BuildHtml(string code, int expiryMinutes)

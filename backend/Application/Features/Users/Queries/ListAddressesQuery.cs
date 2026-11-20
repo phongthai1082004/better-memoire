@@ -9,14 +9,10 @@ namespace Application.Features.Users.Queries
 {
     public record ListAddressesQuery : IQuery<IReadOnlyList<AddressResponse>>;
 
-    public class ListAddressesQueryHandler(
-        IAddressRepository addressRepository,
-        ICurrentUserService currentUser)
+    public class ListAddressesQueryHandler(IAddressRepository addressRepository, ICurrentUserService currentUser)
         : IQueryHandler<ListAddressesQuery, IReadOnlyList<AddressResponse>>
     {
-        public async Task<IReadOnlyList<AddressResponse>> Handle(
-            ListAddressesQuery request,
-            CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<AddressResponse>> Handle(ListAddressesQuery request, CancellationToken cancellationToken)
         {
             var userId = currentUser.UserId
                          ?? throw new UnauthorizedException(ErrorCode.AuthRequired);

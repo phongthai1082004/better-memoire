@@ -1,4 +1,4 @@
-﻿namespace Domain.Abstractions.Events
+namespace Domain.Abstractions.Events
 {
     /// <summary>Something that happened in the domain, used for in-process side effects.</summary>
     public interface IDomainEvent

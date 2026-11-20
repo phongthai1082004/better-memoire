@@ -18,12 +18,7 @@ namespace Domain.Entities.Orders
         {
         }
 
-        public OrderStatusHistory(
-            Guid orderId,
-            OrderStatus? fromStatus,
-            OrderStatus toStatus,
-            Guid? changedBy = null,
-            string? note = null)
+        public OrderStatusHistory(Guid orderId, OrderStatus? fromStatus, OrderStatus toStatus, Guid? changedBy = null, string? note = null)
         {
             OrderId = orderId;
             FromStatus = fromStatus;

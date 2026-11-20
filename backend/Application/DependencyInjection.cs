@@ -1,3 +1,4 @@
+using System.Text;
 using Application.Behaviors;
 using Application.Features.Authentication.Services;
 using Application.Features.Authentication.Validators;
@@ -13,7 +14,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace Application
 {
@@ -47,10 +47,12 @@ namespace Application
             var otpSettings = otpSection.Get<OtpSettings>() ?? new OtpSettings();
             services.AddSingleton(otpSettings);
 
-            services.AddAuthentication(o => {
+            services.AddAuthentication(o =>
+            {
                 o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options => {
+            }).AddJwtBearer(options =>
+            {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,

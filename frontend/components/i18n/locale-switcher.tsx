@@ -58,7 +58,7 @@ export function LocaleSwitcher({
 
   return (
     <div
-      className={cn("relative flex h-10 items-center", className)}
+      className={cn("relative flex h-12 items-center", className)}
       onMouseEnter={show}
       onMouseLeave={hideSoon}
     >
@@ -68,7 +68,7 @@ export function LocaleSwitcher({
         aria-label={label}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="inline-flex h-10 items-center gap-1.5 border border-dashed border-line px-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-chalk transition-colors hover:border-line hover:bg-white/5"
+        className="inline-flex h-12 items-center gap-1.5 border border-dashed border-line px-3 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-chalk transition-colors hover:border-line hover:bg-white/5"
         style={{ borderRadius: "3px 6px 4px 6px / 6px 4px 6px 3px" }}
       >
         {locale.toUpperCase()}

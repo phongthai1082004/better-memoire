@@ -7,15 +7,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Repositories
 {
-    public class NotificationRepository(
-        ApplicationDbContext context,
-        ILoggerFactory loggerFactory)
+    public class NotificationRepository(ApplicationDbContext context, ILoggerFactory loggerFactory)
         : BaseRepository<Notification, Guid>(context, loggerFactory), INotificationRepository
     {
-        public async Task<IReadOnlyList<Notification>> GetForUserAsync(
-            Guid userId,
-            int limit,
-            CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<Notification>> GetForUserAsync(Guid userId, int limit, CancellationToken cancellationToken = default)
         {
             return await dbSet
                 .AsNoTracking()
@@ -26,23 +21,14 @@ namespace Infrastructure.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<Notification?> GetByIdForUserAsync(
-            Guid id,
-            Guid userId,
-            CancellationToken cancellationToken = default)
+        public async Task<Notification?> GetByIdForUserAsync(Guid id, Guid userId, CancellationToken cancellationToken = default)
         {
-            return await dbSet.FirstOrDefaultAsync(
-                notification => notification.Id == id && notification.UserId == userId,
-                cancellationToken);
+            return await dbSet.FirstOrDefaultAsync(notification => notification.Id == id && notification.UserId == userId, cancellationToken);
         }
 
-        public async Task<int> CountUnreadAsync(
-            Guid userId,
-            CancellationToken cancellationToken = default)
+        public async Task<int> CountUnreadAsync(Guid userId, CancellationToken cancellationToken = default)
         {
-            return await dbSet.CountAsync(
-                notification => notification.UserId == userId && !notification.IsRead,
-                cancellationToken);
+            return await dbSet.CountAsync(notification => notification.UserId == userId && !notification.IsRead, cancellationToken);
         }
     }
 }

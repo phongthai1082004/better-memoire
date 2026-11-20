@@ -31,17 +31,7 @@ namespace Domain.Entities.Payments
         {
         }
 
-        public Transaction(
-            string gateway,
-            TransactionType type,
-            int amount,
-            DateTimeOffset transactionTime,
-            Guid? orderId = null,
-            string? gatewayTransactionCode = null,
-            string? idempotencyKeyId = null,
-            Guid? refundOfTransactionId = null,
-            string? paymentLinkId = null,
-            string currency = "VND")
+        public Transaction(string gateway, TransactionType type, int amount, DateTimeOffset transactionTime, Guid? orderId = null, string? gatewayTransactionCode = null, string? idempotencyKeyId = null, Guid? refundOfTransactionId = null, string? paymentLinkId = null, string currency = "VND")
         {
             if (amount < 0)
                 throw new ArgumentOutOfRangeException(nameof(amount));

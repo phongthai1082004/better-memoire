@@ -1,4 +1,4 @@
-﻿
+
 using Domain.Abstractions.Auditable;
 using Domain.Abstractions.Shared;
 

@@ -8,14 +8,16 @@ import type { Dictionary } from "@/lib/i18n/dictionaries";
 export function Hero({
   copy,
   images,
+  startHref,
 }: {
   copy: Dictionary["hero"];
   images: Dictionary["images"];
+  startHref: string;
 }) {
   return (
     <section className="overflow-hidden">
       <div className="page-shell grid items-start gap-16 pb-16 pt-12 md:pt-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20 lg:pb-32 lg:pt-20">
-        <Reveal immediate className="relative z-10 max-w-[640px]">
+        <Reveal immediate className="relative z-10 max-w-[46rem]">
           <h1 className="h-hero chalk-grain">
             {copy.title}
             <span className="em">{copy.accent}</span>
@@ -32,7 +34,7 @@ export function Hero({
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
             <Link
-              href="/auth?mode=register"
+              href={startHref}
               className={buttonStyles({ size: "lg", className: "group" })}
             >
               {copy.primary}
@@ -59,7 +61,7 @@ export function Hero({
         </Reveal>
 
         <Reveal immediate delay={0.14} className="relative">
-          <div className="relative mx-auto w-full max-w-[500px] lg:mr-0">
+          <div className="relative mx-auto w-full max-w-[600px] lg:mr-0">
             <Polaroid
               src="/images/hero-polaroids.webp"
               alt={images.heroPolaroids}

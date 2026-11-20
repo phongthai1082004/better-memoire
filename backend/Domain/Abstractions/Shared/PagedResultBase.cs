@@ -1,4 +1,4 @@
-﻿namespace Domain.Abstractions.Shared
+namespace Domain.Abstractions.Shared
 {
     public abstract class PagedResultBase<T>
     {

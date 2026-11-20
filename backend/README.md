@@ -45,6 +45,16 @@ OAuth 2.0 authorization-code flow handled by the Next.js server; the backend onl
 the resulting ID token and validates its Google signature, issuer, expiry and audience.
 See `docs/testing/GOOGLE_SIGNIN_TEST.md`.
 
+## Code convention
+
+Backend code follows `docs/development/BACKEND_CODE_CONVENTION.md`:
+
+- Signatures and parameter lists stay on one line up to 400 characters.
+- Keep short statements and short argument lists on one line.
+- Format signatures with `node backend/tools/one-line-signatures.mjs`.
+- Format short command/repository argument lists with `node backend/tools/one-line-calls.mjs`.
+- Check formatting with `--check` on both tools.
+
 ## Localization and error codes
 
 - Error codes live in `Domain/Errors/ErrorCode.cs` and are stable API strings such as

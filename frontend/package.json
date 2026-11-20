@@ -14,13 +14,16 @@
     "@hookform/resolvers": "7.0.6",
     "@phosphor-icons/react": "2.1.10",
     "clsx": "2.1.1",
+    "fabric": "^7.4.0",
+    "heic2any": "^0.0.4",
     "motion": "14.14.0",
     "next": "16.4.6",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-hook-form": "7.92.0",
     "tailwind-merge": "3.7.0",
-    "zod": "4.6.7"
+    "zod": "4.6.7",
+    "zustand": "^5.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.5",

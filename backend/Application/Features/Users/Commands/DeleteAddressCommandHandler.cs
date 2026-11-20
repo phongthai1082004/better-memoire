@@ -9,14 +9,9 @@ using Microsoft.Extensions.Localization;
 
 namespace Application.Features.Users.Commands
 {
-    public class DeleteAddressCommandHandler(
-        IAddressRepository addressRepository,
-        ICurrentUserService currentUser,
-        IStringLocalizer<Message> localizer) : ICommandHandler<DeleteAddressCommand, MessageResponse>
+    public class DeleteAddressCommandHandler(IAddressRepository addressRepository, ICurrentUserService currentUser, IStringLocalizer<Message> localizer) : ICommandHandler<DeleteAddressCommand, MessageResponse>
     {
-        public async Task<MessageResponse> Handle(
-            DeleteAddressCommand request,
-            CancellationToken cancellationToken)
+        public async Task<MessageResponse> Handle(DeleteAddressCommand request, CancellationToken cancellationToken)
         {
             var userId = currentUser.UserId
                          ?? throw new UnauthorizedException(ErrorCode.AuthRequired);

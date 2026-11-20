@@ -20,13 +20,7 @@ namespace Domain.Entities.Users
         {
         }
 
-        public ExternalToken(
-            Guid userId,
-            ExternalProvider provider,
-            string providerUserId,
-            string accessToken,
-            string? refreshToken,
-            DateTimeOffset? expiresAt)
+        public ExternalToken(Guid userId, ExternalProvider provider, string providerUserId, string accessToken, string? refreshToken, DateTimeOffset? expiresAt)
         {
             UserId = userId;
             Provider = provider;

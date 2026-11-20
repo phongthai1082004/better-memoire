@@ -1,8 +1,8 @@
-﻿using Application.Cache.Common;
+using System.Text.Json;
+using Application.Cache.Common;
 using Domain.Enums;
 using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
-using System.Text.Json;
 
 namespace Infrastructure.Cache
 {
@@ -33,11 +33,7 @@ namespace Infrastructure.Cache
             return await redis.KeyDeleteAsync(key);
         }
 
-        public async Task<bool> SetAsync<T>(
-            string key,
-            T value,
-            TimeSpan? expiry = null,
-            CacheCondition? condition = CacheCondition.Always)
+        public async Task<bool> SetAsync<T>(string key, T value, TimeSpan? expiry = null, CacheCondition? condition = CacheCondition.Always)
         {
             logger.LogDebug("Cache set {Key} condition={Condition} expiry={Expiry}", key, condition, expiry);
 

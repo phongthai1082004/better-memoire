@@ -27,17 +27,7 @@ namespace Domain.Entities.Financial
         {
         }
 
-        public Expense(
-            ExpenseCategory category,
-            int amount,
-            DateTimeOffset date,
-            Guid? orderId = null,
-            Guid? supplierId = null,
-            PaymentStatus paymentStatus = PaymentStatus.Unpaid,
-            string? description = null,
-            string? supplierName = null,
-            string? attachmentUrl = null,
-            string? note = null)
+        public Expense(ExpenseCategory category, int amount, DateTimeOffset date, Guid? orderId = null, Guid? supplierId = null, PaymentStatus paymentStatus = PaymentStatus.Unpaid, string? description = null, string? supplierName = null, string? attachmentUrl = null, string? note = null)
         {
             if (amount <= 0)
                 throw new DomainRuleException(ErrorCode.ExpenseAmountPositive);

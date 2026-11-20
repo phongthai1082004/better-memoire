@@ -9,10 +9,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Application.Features.Authentication.Commands
 {
-    public class LogoutCommandHandler(
-        ICurrentUserService currentUserService,
-        IUserRepository userRepository,
-        IStringLocalizer<Message> localizer) : ICommandHandler<LogoutCommand, MessageResponse>
+    public class LogoutCommandHandler(ICurrentUserService currentUserService, IUserRepository userRepository, IStringLocalizer<Message> localizer) : ICommandHandler<LogoutCommand, MessageResponse>
     {
         public async Task<MessageResponse> Handle(LogoutCommand request, CancellationToken cancellationToken)
         {

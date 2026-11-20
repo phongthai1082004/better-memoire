@@ -1,5 +1,5 @@
-﻿using Domain.Abstractions.Repository.Common;
 using System.Linq.Expressions;
+using Domain.Abstractions.Repository.Common;
 
 namespace Application.Specifications.Common
 {

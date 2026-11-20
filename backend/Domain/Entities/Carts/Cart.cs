@@ -25,12 +25,7 @@ namespace Domain.Entities.Carts
             UserId = userId;
         }
 
-        public CartItem AddItem(
-            Guid bookId,
-            int quantity,
-            Guid? coverOptionId = null,
-            Guid? paperOptionId = null,
-            Guid? sizeOptionId = null)
+        public CartItem AddItem(Guid bookId, int quantity, Guid? coverOptionId = null, Guid? paperOptionId = null, Guid? sizeOptionId = null)
         {
             quantity = CartItem.ClampQuantity(quantity);
 
@@ -49,12 +44,7 @@ namespace Domain.Entities.Carts
             return item;
         }
 
-        public CartItem UpdateItem(
-            Guid bookId,
-            int quantity,
-            Guid? coverOptionId,
-            Guid? paperOptionId,
-            Guid? sizeOptionId)
+        public CartItem UpdateItem(Guid bookId, int quantity, Guid? coverOptionId, Guid? paperOptionId, Guid? sizeOptionId)
         {
             var item = _items.FirstOrDefault(i => i.BookId == bookId)
                 ?? throw new DomainRuleException(ErrorCode.CartBookNotFound);

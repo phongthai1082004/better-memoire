@@ -7,10 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Application.Services
 {
-    public class AuthTokenIssuer(
-        IJwtService jwtService,
-        JwtSettings jwtSettings,
-        IHttpContextAccessor httpContextAccessor) : IAuthTokenIssuer
+    public class AuthTokenIssuer(IJwtService jwtService, JwtSettings jwtSettings, IHttpContextAccessor httpContextAccessor) : IAuthTokenIssuer
     {
         public AuthResponse Issue(User user)
         {

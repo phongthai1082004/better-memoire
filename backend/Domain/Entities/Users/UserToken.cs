@@ -23,14 +23,7 @@ namespace Domain.Entities.Users
         {
         }
 
-        public UserToken(
-            Guid userId,
-            string rawToken,
-            TokenType type,
-            DateTimeOffset expiresAt,
-            string? userAgent = null,
-            string? ip = null,
-            string? deviceId = null)
+        public UserToken(Guid userId, string rawToken, TokenType type, DateTimeOffset expiresAt, string? userAgent = null, string? ip = null, string? deviceId = null)
         {
             UserId = userId;
             TokenHash = TokenHasher.Hash(rawToken);

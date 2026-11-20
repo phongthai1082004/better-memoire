@@ -7,14 +7,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Repositories
 {
-    public class AddressRepository(
-        ApplicationDbContext context,
-        ILoggerFactory loggerFactory)
+    public class AddressRepository(ApplicationDbContext context, ILoggerFactory loggerFactory)
         : BaseRepository<Address, int>(context, loggerFactory), IAddressRepository
     {
-        public async Task<IReadOnlyList<Address>> GetForUserAsync(
-            Guid userId,
-            CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<Address>> GetForUserAsync(Guid userId, CancellationToken cancellationToken = default)
         {
             return await dbSet
                 .AsNoTracking()
@@ -24,24 +20,14 @@ namespace Infrastructure.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<Address?> GetOwnedAsync(
-            int id,
-            Guid userId,
-            CancellationToken cancellationToken = default)
+        public async Task<Address?> GetOwnedAsync(int id, Guid userId, CancellationToken cancellationToken = default)
         {
-            return await dbSet.FirstOrDefaultAsync(
-                address => address.Id == id && address.UserId == userId,
-                cancellationToken);
+            return await dbSet.FirstOrDefaultAsync(address => address.Id == id && address.UserId == userId, cancellationToken);
         }
 
-        public async Task ClearDefaultAsync(
-            Guid userId,
-            CancellationToken cancellationToken = default)
+        public async Task ClearDefaultAsync(Guid userId, CancellationToken cancellationToken = default)
         {
-            var defaults = await dbSet
-                .Where(address => address.UserId == userId && address.IsDefault)
-                .ToListAsync(cancellationToken);
-
+            var defaults = await dbSet.Where(address => address.UserId == userId && address.IsDefault).ToListAsync(cancellationToken);
             foreach (var address in defaults)
                 address.UnsetDefault();
         }

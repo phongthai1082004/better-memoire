@@ -59,6 +59,11 @@ namespace Infrastructure.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
+                    b.Property<long>("LastEventSeq")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasDefaultValue(0L);
+
                     b.Property<Guid?>("LastModifiedBy")
                         .HasColumnType("uuid");
 
@@ -78,6 +83,11 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid?>("SampleBookId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("SchemaVersion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("Style")
                         .IsRequired()
@@ -138,6 +148,11 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Position")
                         .HasColumnType("integer");
 
+                    b.Property<int>("SchemaVersion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1);
+
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -152,6 +167,69 @@ namespace Infrastructure.Migrations
                     b.HasIndex("BookId", "Position");
 
                     b.ToTable("book_pages", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Books.BookPageEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ActorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("BaseVersion")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("ClientMutationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset>("CreatedOnUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("LastModifiedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset?>("LastModifiedOnUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("PageId")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<string>("Patch")
+                        .HasColumnType("jsonb");
+
+                    b.Property<int>("ResultVersion")
+                        .HasColumnType("integer");
+
+                    b.Property<long>("Seq")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId", "CreatedOnUtc");
+
+                    b.HasIndex("BookId", "Seq")
+                        .IsUnique();
+
+                    b.HasIndex("PageId", "ClientMutationId")
+                        .IsUnique()
+                        .HasFilter("\"ClientMutationId\" IS NOT NULL");
+
+                    b.ToTable("book_page_events", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Carts.Cart", b =>
@@ -2159,6 +2237,15 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.Books.Book", null)
                         .WithMany("Pages")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Books.BookPageEvent", b =>
+                {
+                    b.HasOne("Domain.Entities.Books.Book", null)
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

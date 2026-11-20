@@ -1,4 +1,4 @@
-﻿namespace Domain.Abstractions.Events
+namespace Domain.Abstractions.Events
 {
     /// <summary>Handles a specific domain event.</summary>
     /// <typeparam name="TEvent">Event type to handle.</typeparam>

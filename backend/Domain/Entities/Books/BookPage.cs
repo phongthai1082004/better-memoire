@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Domain.Abstractions.Entities;
 
 namespace Domain.Entities.Books
@@ -12,6 +13,7 @@ namespace Domain.Entities.Books
         public int Position { get; private set; }
         public string Content { get; private set; } = string.Empty;
         public int Version { get; private set; }
+        public int SchemaVersion { get; private set; } = 2;
         public DateTimeOffset UpdatedAt { get; private set; }
 
         private BookPage()
@@ -25,6 +27,7 @@ namespace Domain.Entities.Books
             Position = position;
             Content = content;
             Version = version;
+            SchemaVersion = ReadSchemaVersion(content);
             UpdatedAt = DateTimeOffset.UtcNow;
         }
 
@@ -32,8 +35,28 @@ namespace Domain.Entities.Books
         {
             Position = position;
             Content = content;
+            SchemaVersion = ReadSchemaVersion(content);
             Version++;
             UpdatedAt = DateTimeOffset.UtcNow;
+        }
+
+        public void SetPosition(int position) => Position = position;
+
+        private static int ReadSchemaVersion(string content)
+        {
+            try
+            {
+                using var document = JsonDocument.Parse(content);
+                return document.RootElement.TryGetProperty("schemaVersion", out var value) &&
+                       value.TryGetInt32(out var schemaVersion) &&
+                       schemaVersion > 0
+                    ? schemaVersion
+                    : 2;
+            }
+            catch (JsonException)
+            {
+                return 2;
+            }
         }
     }
 }

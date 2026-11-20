@@ -13,9 +13,7 @@ namespace Presentation.Controllers
     public class NotificationsController(ISender mediator) : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> List(
-            [FromQuery] int limit = 20,
-            CancellationToken cancellationToken = default)
+        public async Task<IActionResult> List([FromQuery] int limit = 20, CancellationToken cancellationToken = default)
         {
             var result = await mediator.Send(new GetNotificationsQuery(limit), cancellationToken);
             return Ok(result);

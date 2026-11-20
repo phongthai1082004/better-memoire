@@ -23,15 +23,7 @@ namespace Domain.Entities.PrintOptions
         {
         }
 
-        public PrintOption(
-            PrintOptionType type,
-            string code,
-            string name,
-            string description,
-            int? width = null,
-            int? height = null,
-            int? price = null,
-            int? pricePerPage = null)
+        public PrintOption(PrintOptionType type, string code, string name, string description, int? width = null, int? height = null, int? price = null, int? pricePerPage = null)
         {
             Type = type;
             Code = code;
@@ -43,14 +35,7 @@ namespace Domain.Entities.PrintOptions
             PricePerPage = pricePerPage;
         }
 
-        public void Update(
-            string code,
-            string name,
-            string description,
-            int? width,
-            int? height,
-            int? price,
-            int? pricePerPage)
+        public void Update(string code, string name, string description, int? width, int? height, int? price, int? pricePerPage)
         {
             Code = code;
             Name = name;

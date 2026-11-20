@@ -9,7 +9,13 @@ import { ChalkTab } from "@/components/ui/chalk-tab";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 import { cn } from "@/lib/utils";
 
-export function Books({ copy }: { copy: Dictionary["books"] }) {
+export function Books({
+  copy,
+  startHref,
+}: {
+  copy: Dictionary["books"];
+  startHref: string;
+}) {
   const [active, setActive] = useState(0);
   const item = copy.items[active] ?? copy.items[0];
 
@@ -92,7 +98,7 @@ export function Books({ copy }: { copy: Dictionary["books"] }) {
               </p>
             </div>
             <Link
-              href="/auth?mode=register"
+              href={startHref}
               className={buttonStyles({
                 variant: "secondary",
                 size: "sm",

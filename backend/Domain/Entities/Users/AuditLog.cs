@@ -19,14 +19,7 @@ namespace Domain.Entities.Users
         {
         }
 
-        public AuditLog(
-            Guid? actorId,
-            string action,
-            string entity,
-            string entityId,
-            string? before = null,
-            string? after = null,
-            string? ip = null)
+        public AuditLog(Guid? actorId, string action, string entity, string entityId, string? before = null, string? after = null, string? ip = null)
         {
             ActorId = actorId;
             Action = action;

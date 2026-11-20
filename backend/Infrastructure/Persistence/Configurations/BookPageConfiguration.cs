@@ -16,6 +16,7 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(p => p.Id).HasMaxLength(64).ValueGeneratedNever();
             builder.Property(p => p.Content).HasColumnType("jsonb").IsRequired();
             builder.Property(p => p.Version).IsConcurrencyToken().HasDefaultValue(1);
+            builder.Property(p => p.SchemaVersion).HasDefaultValue(1);
             builder.Property(p => p.UpdatedAt).IsRequired();
 
             builder.HasIndex(p => new { p.BookId, p.Position });

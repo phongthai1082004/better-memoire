@@ -8,10 +8,7 @@ using Domain.Exceptions.Common;
 
 namespace Application.Features.Authentication.Commands
 {
-    public class LoginCommandHandler(
-        IJwtService jwtService,
-        IUserRepository userRepository,
-        IAuthTokenIssuer tokenIssuer) : ICommandHandler<LoginCommand, AuthResponse>
+    public class LoginCommandHandler(IJwtService jwtService, IUserRepository userRepository, IAuthTokenIssuer tokenIssuer) : ICommandHandler<LoginCommand, AuthResponse>
     {
         public async Task<AuthResponse> Handle(LoginCommand request, CancellationToken cancellationToken = default)
         {

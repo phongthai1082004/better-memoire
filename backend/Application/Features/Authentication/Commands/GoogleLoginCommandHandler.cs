@@ -9,10 +9,7 @@ using Domain.Exceptions.Common;
 
 namespace Application.Features.Authentication.Commands
 {
-    public class GoogleLoginCommandHandler(
-        IGoogleTokenValidator googleTokenValidator,
-        IUserRepository userRepository,
-        IAuthTokenIssuer tokenIssuer) : ICommandHandler<GoogleLoginCommand, AuthResponse>
+    public class GoogleLoginCommandHandler(IGoogleTokenValidator googleTokenValidator, IUserRepository userRepository, IAuthTokenIssuer tokenIssuer) : ICommandHandler<GoogleLoginCommand, AuthResponse>
     {
         public async Task<AuthResponse> Handle(GoogleLoginCommand request, CancellationToken cancellationToken)
         {
@@ -25,13 +22,7 @@ namespace Application.Features.Authentication.Commands
             if (user is null)
             {
                 var localPart = google.Email.Split('@')[0];
-                user = new User(
-                    google.Email,
-                    string.IsNullOrWhiteSpace(google.Name)
-                        ? (string.IsNullOrWhiteSpace(localPart) ? "User" : localPart)
-                        : google.Name,
-                    null,
-                    null);
+                user = new User(google.Email, string.IsNullOrWhiteSpace(google.Name) ? (string.IsNullOrWhiteSpace(localPart) ? "User" : localPart) : google.Name, null, null);
 
                 user.LinkGoogleAccount(google.Subject, google.Picture, now);
                 user.Activate();
@@ -43,8 +34,7 @@ namespace Application.Features.Authentication.Commands
                 if (user.Status == UserStatus.Banned)
                     throw new ForbiddenException(ErrorCode.AuthAccountSuspended);
 
-                if (!string.IsNullOrWhiteSpace(user.GoogleId) &&
-                    !string.Equals(user.GoogleId, google.Subject, StringComparison.Ordinal))
+                if (!string.IsNullOrWhiteSpace(user.GoogleId) && !string.Equals(user.GoogleId, google.Subject, StringComparison.Ordinal))
                 {
                     throw new UnauthorizedException(ErrorCode.AuthGoogleLinkedOther);
                 }

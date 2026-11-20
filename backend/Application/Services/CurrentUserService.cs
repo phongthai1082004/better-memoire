@@ -1,14 +1,12 @@
+using System.Security.Claims;
+using System.Text;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using System.Text;
 
 namespace Application.Services
 {
-    public class CurrentUserService(
-        IHttpContextAccessor httpContextAccessor,
-        ILogger<CurrentUserService> logger) : ICurrentUserService
+    public class CurrentUserService(IHttpContextAccessor httpContextAccessor, ILogger<CurrentUserService> logger) : ICurrentUserService
     {
         private readonly HttpContext? context = httpContextAccessor.HttpContext;
         private string? _cachedPayload;

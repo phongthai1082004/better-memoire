@@ -17,9 +17,7 @@ namespace Application.Features.Users.Validators
                 .WithMessage("Phone number must be a valid Vietnamese number.");
 
             RuleFor(x => x.AvatarUrl)
-                .Must(url => string.IsNullOrWhiteSpace(url) ||
-                             (Uri.TryCreate(url, UriKind.Absolute, out var uri) &&
-                              (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp)))
+                .Must(url => string.IsNullOrWhiteSpace(url) || (Uri.TryCreate(url, UriKind.Absolute, out var uri) && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp)))
                 .WithMessage("Avatar URL must be an absolute URL.");
 
             RuleFor(x => x.Locale)

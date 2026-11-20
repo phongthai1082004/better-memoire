@@ -28,7 +28,7 @@ export function AuthVisual({
         <div className="flex items-center justify-between gap-6">
           <Link
             href="/"
-            className="hand inline-flex items-center gap-2 text-[1.05rem] text-body transition-colors hover:text-yellow"
+            className="hand inline-flex items-center gap-2 text-[1.15rem] text-body transition-colors hover:text-yellow"
           >
             <ArrowLeft size={16} weight="regular" aria-hidden="true" />
             {copy.back}
@@ -40,12 +40,12 @@ export function AuthVisual({
           <p className="hand text-[clamp(1.85rem,2.9vw,2.55rem)] leading-[1.2] text-chalk">
             {copy.quote}
           </p>
-          <p className="mt-6 max-w-[34ch] text-[0.95rem] leading-relaxed text-body">
+          <p className="mt-6 max-w-[34ch] text-[1.05rem] leading-relaxed text-body">
             {copy.body}
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-[0.74rem] text-muted">
+        <div className="flex items-center gap-2 text-[0.84rem] text-muted">
           <LockSimple size={14} weight="regular" aria-hidden="true" />
           <span>{copy.security}</span>
         </div>

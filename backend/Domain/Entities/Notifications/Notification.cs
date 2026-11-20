@@ -28,19 +28,7 @@ namespace Domain.Entities.Notifications
         {
         }
 
-        public Notification(
-            Guid userId,
-            string title,
-            string message,
-            NotificationType type,
-            string[]? channels = null,
-            string scope = "personal",
-            string sendBy = "system",
-            string? email = null,
-            string? phone = null,
-            string? link = null,
-            string? metadata = null,
-            string? i18n = null)
+        public Notification(Guid userId, string title, string message, NotificationType type, string[]? channels = null, string scope = "personal", string sendBy = "system", string? email = null, string? phone = null, string? link = null, string? metadata = null, string? i18n = null)
         {
             UserId = userId;
             Title = title;

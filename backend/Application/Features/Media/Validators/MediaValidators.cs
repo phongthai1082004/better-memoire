@@ -13,8 +13,7 @@ namespace Application.Features.Media.Validators
             RuleFor(x => x.Height).GreaterThan(0).When(x => x.Height.HasValue);
             RuleFor(x => x.Size).GreaterThan(0).When(x => x.Size.HasValue);
             RuleFor(x => x.MimeType)
-                .Must(mime => string.IsNullOrWhiteSpace(mime) ||
-                              mime is "image/jpeg" or "image/png" or "image/webp" or "image/gif" or "image/avif" or "image/heic")
+                .Must(mime => string.IsNullOrWhiteSpace(mime) || mime is "image/jpeg" or "image/png" or "image/webp" or "image/gif" or "image/avif" or "image/heic")
                 .WithMessage("Unsupported image type.");
         }
     }

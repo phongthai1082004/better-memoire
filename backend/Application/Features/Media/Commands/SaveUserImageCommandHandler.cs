@@ -8,14 +8,9 @@ using Domain.Exceptions.Common;
 
 namespace Application.Features.Media.Commands
 {
-    public class SaveUserImageCommandHandler(
-        IUserImageRepository imageRepository,
-        IStorageService storage,
-        ICurrentUserService currentUser) : ICommandHandler<SaveUserImageCommand, UserImageResponse>
+    public class SaveUserImageCommandHandler(IUserImageRepository imageRepository, IStorageService storage, ICurrentUserService currentUser) : ICommandHandler<SaveUserImageCommand, UserImageResponse>
     {
-        public Task<UserImageResponse> Handle(
-            SaveUserImageCommand request,
-            CancellationToken cancellationToken)
+        public Task<UserImageResponse> Handle(SaveUserImageCommand request, CancellationToken cancellationToken)
         {
             var userId = currentUser.UserId
                          ?? throw new UnauthorizedException(ErrorCode.AuthRequired);
@@ -26,23 +21,12 @@ namespace Application.Features.Media.Commands
             if (!storage.IsOwnedUrl(request.Url))
                 throw new BadRequestException(ErrorCode.MediaInvalidUrl);
 
-            if (string.IsNullOrWhiteSpace(request.PublicId) ||
-                !request.PublicId.StartsWith("echotrace/", StringComparison.Ordinal))
+            if (string.IsNullOrWhiteSpace(request.PublicId) || !request.PublicId.StartsWith("echotrace/", StringComparison.Ordinal))
             {
                 throw new BadRequestException(ErrorCode.MediaInvalidUrl);
             }
 
-            var image = new UserImage(
-                userId,
-                request.Url,
-                request.PublicId,
-                request.ThumbUrl,
-                request.Width,
-                request.Height,
-                request.Size,
-                request.MimeType,
-                request.OriginalName,
-                request.ContentHash)
+            var image = new UserImage(userId, request.Url, request.PublicId, request.ThumbUrl, request.Width, request.Height, request.Size, request.MimeType, request.OriginalName, request.ContentHash)
             {
                 CreatedOnUtc = DateTimeOffset.UtcNow
             };

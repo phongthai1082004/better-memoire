@@ -58,7 +58,7 @@ export function UserMenu({
 
   return (
     <div
-      className="relative flex h-10 items-center"
+      className="relative flex h-12 items-center"
       onMouseEnter={show}
       onMouseLeave={hideSoon}
       onBlur={(event) => {
@@ -73,9 +73,9 @@ export function UserMenu({
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label={copy.account}
-        className="btn btn-outline btn-sm h-10 !border-line !text-chalk gap-2 py-1 pl-1.5 pr-3 hover:!border-line hover:!bg-white/5 hover:!text-chalk"
+        className="btn btn-outline btn-sm h-12 !border-line !text-chalk gap-2 py-1 pl-1.5 pr-3 hover:!border-line hover:!bg-white/5 hover:!text-chalk"
       >
-        <span className="relative grid h-7 w-7 shrink-0 place-items-center overflow-hidden rounded-full bg-yellow text-[0.72rem] font-semibold text-yellow-ink">
+        <span className="relative grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full bg-yellow text-[0.78rem] font-semibold text-yellow-ink">
           {user.avatarUrl ? (
             <img
               src={user.avatarUrl}
@@ -86,7 +86,7 @@ export function UserMenu({
             initial
           )}
         </span>
-        <span className="hidden max-w-[9.5rem] truncate text-[0.95rem] sm:block">
+        <span className="hidden max-w-[9.5rem] truncate text-[1.05rem] sm:block">
           {user.name}
         </span>
       </button>

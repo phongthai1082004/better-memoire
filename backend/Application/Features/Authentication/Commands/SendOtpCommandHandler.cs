@@ -13,13 +13,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Features.Authentication.Commands
 {
-    public class SendOtpCommandHandler(
-        IUserRepository userRepository,
-        IEmailService emailService,
-        OtpAttemptCounter attemptCounter,
-        OtpSettings otpSettings,
-        IStringLocalizer<Message> localizer,
-        ILogger<SendOtpCommandHandler> logger) : ICommandHandler<SendOtpCommand, MessageResponse>
+    public class SendOtpCommandHandler(IUserRepository userRepository, IEmailService emailService, OtpAttemptCounter attemptCounter, OtpSettings otpSettings, IStringLocalizer<Message> localizer, ILogger<SendOtpCommandHandler> logger) : ICommandHandler<SendOtpCommand, MessageResponse>
     {
         public async Task<MessageResponse> Handle(SendOtpCommand request, CancellationToken cancellationToken)
         {
@@ -41,11 +35,7 @@ namespace Application.Features.Authentication.Commands
             await attemptCounter.ResetAsync(request.Email);
             user.AddToken(code, TokenType.Otp, DateTimeOffset.UtcNow.AddMinutes(otpSettings.ExpiryMinutes));
 
-            await emailService.SendOtpAsync(
-                request.Email,
-                code,
-                otpSettings.ExpiryMinutes,
-                cancellationToken);
+            await emailService.SendOtpAsync(request.Email, code, otpSettings.ExpiryMinutes, cancellationToken);
 
             logger.LogInformation("Verification code reissued for {Email}", request.Email);
 

@@ -9,9 +9,7 @@ namespace Application.Features.Users.Queries
 {
     public record GetMeQuery : IQuery<UserProfileResponse>;
 
-    public class GetMeQueryHandler(
-        IUserRepository userRepository,
-        ICurrentUserService currentUser) : IQueryHandler<GetMeQuery, UserProfileResponse>
+    public class GetMeQueryHandler(IUserRepository userRepository, ICurrentUserService currentUser) : IQueryHandler<GetMeQuery, UserProfileResponse>
     {
         public async Task<UserProfileResponse> Handle(GetMeQuery request, CancellationToken cancellationToken)
         {

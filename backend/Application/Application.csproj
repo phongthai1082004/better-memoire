@@ -7,15 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Orders\**" />
+    <Compile Remove="Features\Products\**" />
     <Compile Remove="Validators\**" />
+    <EmbeddedResource Remove="Features\Orders\**" />
+    <EmbeddedResource Remove="Features\Products\**" />
     <EmbeddedResource Remove="Validators\**" />
+    <None Remove="Features\Orders\**" />
+    <None Remove="Features\Products\**" />
     <None Remove="Validators\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Orders\" />
-    <Folder Include="Features\Products\Commands\" />
-    <Folder Include="Features\Products\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -57,8 +57,8 @@
 
   --paper: #ece5d5; /* print matte for photographs */
 
-  --gutter: clamp(20px, 4vw, 56px);
-  --section-y: clamp(76px, 9vw, 136px);
+  --gutter: clamp(24px, 4.5vw, 64px);
+  --section-y: clamp(96px, 10vw, 180px);
 
   --board-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='900'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02 .032' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .78 0 0 0 0 .8 0 0 0 0 .86 0 0 0 .17 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -70,8 +70,21 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6.5rem;
+    scroll-padding-top: 8rem;
     -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    html {
+      font-size: 18px;
+    }
   }
 
   body {
@@ -117,13 +130,60 @@
   p {
     text-wrap: pretty;
   }
+
+  button:not(:disabled),
+  [role="button"],
+  a,
+  select,
+  summary,
+  input[type="color"],
+  input[type="range"],
+  input[type="file"] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--line) 90%, transparent);
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background-clip: content-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--yellow) 45%, transparent);
+    background-clip: content-box;
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 }
 
 @layer components {
   /* ---------- Layout ---------- */
   .page-shell {
     width: 100%;
-    max-width: 1180px;
+    max-width: 1640px;
     margin-inline: auto;
     padding-inline: var(--gutter);
   }
@@ -268,6 +328,22 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+  }
+
+  /* Canva-style working surface: a quiet dot field with a soft edge vignette. */
+  .studio-workspace {
+    background-color: var(--board);
+    background-image:
+      radial-gradient(circle at center, rgba(236, 235, 228, 0.08) 1px, transparent 1.2px),
+      radial-gradient(
+        ellipse 100% 90% at 50% 48%,
+        rgba(255, 255, 255, 0.035) 0%,
+        transparent 52%,
+        rgba(0, 0, 0, 0.28) 100%
+      );
+    background-size: 22px 22px, 100% 100%;
+    background-repeat: repeat, no-repeat;
+    background-position: 0 0, center;
   }
 
   .option-card__back {

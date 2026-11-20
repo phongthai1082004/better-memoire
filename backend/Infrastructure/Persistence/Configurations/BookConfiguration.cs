@@ -25,6 +25,8 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(b => b.PaperHeight).HasColumnType("double precision");
             builder.Property(b => b.PaperWidth).HasColumnType("double precision");
             builder.Property(b => b.PageCount).HasDefaultValue(0);
+            builder.Property(b => b.SchemaVersion).HasDefaultValue(1);
+            builder.Property(b => b.LastEventSeq).HasDefaultValue(0L);
 
             builder.HasIndex(b => b.UserId);
             builder.HasIndex(b => new { b.UserId, b.SampleBookId })

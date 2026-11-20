@@ -38,6 +38,7 @@ async function handle(request: Request, context: RouteContext) {
     if (value) headers.set(name, value);
   }
   headers.set("accept-language", locale);
+  headers.set("accept-encoding", "identity");
   if (token) headers.set("authorization", `Bearer ${token}`);
 
   const body =

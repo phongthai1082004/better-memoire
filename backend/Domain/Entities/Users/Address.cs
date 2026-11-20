@@ -21,15 +21,7 @@ namespace Domain.Entities.Users
         {
         }
 
-        public Address(
-            Guid userId,
-            string recipientName,
-            string phone,
-            string province,
-            string district,
-            string ward,
-            string street,
-            bool isDefault = false)
+        public Address(Guid userId, string recipientName, string phone, string province, string district, string ward, string street, bool isDefault = false)
         {
             UserId = userId;
             RecipientName = recipientName;

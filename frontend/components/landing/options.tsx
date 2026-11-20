@@ -20,9 +20,11 @@ const visuals = {
 export function Options({
   copy,
   images,
+  startHref,
 }: {
   copy: Dictionary["options"];
   images: Dictionary["images"];
+  startHref: string;
 }) {
   const [active, setActive] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -114,7 +116,7 @@ export function Options({
                         {copy.flip}
                       </button>
                       <Link
-                        href="/auth?mode=register"
+                        href={startHref}
                         tabIndex={flipped ? -1 : undefined}
                         className="link-hand text-[1.08rem]"
                       >
@@ -175,7 +177,7 @@ export function Options({
                       {copy.flipBack}
                     </button>
                     <Link
-                      href="/auth?mode=register"
+                      href={startHref}
                       tabIndex={flipped ? undefined : -1}
                       className="link-hand text-[0.95rem]"
                     >

@@ -1,7 +1,7 @@
-using Domain.Abstractions.Entities;
-using Domain.Enums.Idempotency;
 using System.Security.Cryptography;
 using System.Text;
+using Domain.Abstractions.Entities;
+using Domain.Enums.Idempotency;
 
 namespace Domain.Entities.Idempotency
 {
@@ -24,12 +24,7 @@ namespace Domain.Entities.Idempotency
         {
         }
 
-        public IdempotencyRecord(
-            string key,
-            Guid? userId,
-            string endpoint,
-            string? requestHash,
-            DateTimeOffset expiresAt)
+        public IdempotencyRecord(string key, Guid? userId, string endpoint, string? requestHash, DateTimeOffset expiresAt)
         {
             Key = key;
             UserId = userId;

@@ -321,4 +321,16 @@
   <data name="Address.Deleted" xml:space="preserve">
     <value>Đã xóa địa chỉ.</value>
   </data>
+  <data name="Book.NotFound" xml:space="preserve">
+    <value>Không tìm thấy cuốn sách.</value>
+  </data>
+  <data name="Book.PageNotFound" xml:space="preserve">
+    <value>Không tìm thấy trang sách.</value>
+  </data>
+  <data name="Book.PatchInvalid" xml:space="preserve">
+    <value>Thay đổi trang không hợp lệ.</value>
+  </data>
+  <data name="Book.PageTooLarge" xml:space="preserve">
+    <value>Trang sách quá lớn.</value>
+  </data>
 </root>

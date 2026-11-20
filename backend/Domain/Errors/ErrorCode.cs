@@ -72,6 +72,10 @@ namespace Domain.Errors
         public const string AddressNotFound = "ADDRESS_NOT_FOUND";
         public const string BookPageExists = "BOOK_PAGE_EXISTS";
         public const string BookPageVersionConflict = "BOOK_PAGE_VERSION_CONFLICT";
+        public const string BookNotFound = "BOOK_NOT_FOUND";
+        public const string BookPageNotFound = "BOOK_PAGE_NOT_FOUND";
+        public const string BookPagePatchInvalid = "BOOK_PAGE_PATCH_INVALID";
+        public const string BookPageTooLarge = "BOOK_PAGE_TOO_LARGE";
         public const string CartBookNotFound = "CART_BOOK_NOT_FOUND";
         public const string OrderSupplierAlreadyAssigned = "ORDER_SUPPLIER_ALREADY_ASSIGNED";
         public const string OrderForceReasonRequired = "ORDER_FORCE_REASON_REQUIRED";

@@ -21,13 +21,7 @@ namespace Domain.Entities.Carts
         {
         }
 
-        public CartItem(
-            Guid cartId,
-            Guid bookId,
-            int quantity,
-            Guid? coverOptionId = null,
-            Guid? paperOptionId = null,
-            Guid? sizeOptionId = null)
+        public CartItem(Guid cartId, Guid bookId, int quantity, Guid? coverOptionId = null, Guid? paperOptionId = null, Guid? sizeOptionId = null)
         {
             CartId = cartId;
             BookId = bookId;

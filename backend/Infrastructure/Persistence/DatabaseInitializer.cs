@@ -6,9 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Persistence
 {
-    public class DatabaseInitializer(
-        IServiceScopeFactory scopeFactory,
-        ILogger<DatabaseInitializer> logger) : IDatabaseInitializer
+    public class DatabaseInitializer(IServiceScopeFactory scopeFactory, ILogger<DatabaseInitializer> logger) : IDatabaseInitializer
     {
         public async Task MigrateAsync()
         {

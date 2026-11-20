@@ -10,17 +10,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Features.Media.Commands
 {
-    public class DeleteUserImageCommandHandler(
-        IUserImageRepository imageRepository,
-        IStorageService storage,
-        ICurrentUserService currentUser,
-        IStringLocalizer<Message> localizer,
-        ILogger<DeleteUserImageCommandHandler> logger)
+    public class DeleteUserImageCommandHandler(IUserImageRepository imageRepository, IStorageService storage, ICurrentUserService currentUser, IStringLocalizer<Message> localizer, ILogger<DeleteUserImageCommandHandler> logger)
         : ICommandHandler<DeleteUserImageCommand, MessageResponse>
     {
-        public async Task<MessageResponse> Handle(
-            DeleteUserImageCommand request,
-            CancellationToken cancellationToken)
+        public async Task<MessageResponse> Handle(DeleteUserImageCommand request, CancellationToken cancellationToken)
         {
             var userId = currentUser.UserId
                          ?? throw new UnauthorizedException(ErrorCode.AuthRequired);

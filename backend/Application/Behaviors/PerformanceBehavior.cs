@@ -1,30 +1,22 @@
-﻿using MediatR;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace Application.Behaviors
 {
     public class PerformanceBehavior<TRequest, TResponse>(ILogger<PerformanceBehavior<TRequest, TResponse>> logger)
         : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
     {
-        public async Task<TResponse> Handle(
-            TRequest request, 
-            RequestHandlerDelegate<TResponse> next, 
-            CancellationToken cancellationToken)
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             var timer = Stopwatch.StartNew();
-
             var response = await next();
-
             timer.Stop();
-
             var elapsedMs = timer.ElapsedMilliseconds;
             if (elapsedMs > 500)
             {
-                logger.LogWarning("Long Running Request: {Name} ({Elapsed} ms) {@Request}",
-                    typeof(TRequest).Name, elapsedMs, request);
+                logger.LogWarning("Long Running Request: {Name} ({Elapsed} ms) {@Request}", typeof(TRequest).Name, elapsedMs, request);
             }
-
             return response;
         }
     }

@@ -26,17 +26,7 @@ namespace Domain.Entities.Financial
         {
         }
 
-        public Cashflow(
-            CashflowDirection direction,
-            CashflowCategory category,
-            int amount,
-            DateTimeOffset date,
-            Guid? transactionId = null,
-            Guid? orderId = null,
-            Guid? expenseId = null,
-            Guid? supplierId = null,
-            Guid? reversalOfId = null,
-            string? note = null)
+        public Cashflow(CashflowDirection direction, CashflowCategory category, int amount, DateTimeOffset date, Guid? transactionId = null, Guid? orderId = null, Guid? expenseId = null, Guid? supplierId = null, Guid? reversalOfId = null, string? note = null)
         {
             if (amount <= 0)
                 throw new DomainRuleException(ErrorCode.CashflowAmountPositive);

@@ -1,10 +1,10 @@
-using Application.Interfaces.Services;
-using Domain.Configurations;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Application.Interfaces.Services;
+using Domain.Configurations;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Services
 {
@@ -72,13 +72,7 @@ namespace Application.Services
         public bool VerifyPassword(string providedPassword, string hashedPassword)
             => BCrypt.Net.BCrypt.Verify(providedPassword, hashedPassword);
 
-        private string WriteToken(
-            Guid userId,
-            string email,
-            string role,
-            DateTime expires,
-            string key,
-            string tokenType)
+        private string WriteToken(Guid userId, string email, string role, DateTime expires, string key, string tokenType)
         {
             var handler = new JwtSecurityTokenHandler();
             var descriptor = new SecurityTokenDescriptor

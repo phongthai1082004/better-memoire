@@ -85,13 +85,7 @@ namespace Domain.Entities.Orders
         {
         }
 
-        public Order(
-            Guid userId,
-            PaymentType paymentType,
-            int subTotal,
-            int discountAmount,
-            int totalAmount,
-            int depositAmount = 0)
+        public Order(Guid userId, PaymentType paymentType, int subTotal, int discountAmount, int totalAmount, int depositAmount = 0)
         {
             UserId = userId;
             PaymentType = paymentType;

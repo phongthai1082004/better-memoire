@@ -10,12 +10,7 @@ using Domain.Exceptions.Common;
 
 namespace Application.Features.Authentication.Commands
 {
-    public class VerifyOtpCommandHandler(
-        IUserRepository userRepository,
-        IJwtService jwtService,
-        IAuthTokenIssuer tokenIssuer,
-        OtpAttemptCounter attemptCounter,
-        OtpSettings otpSettings) : ICommandHandler<VerifyOtpCommand, AuthResponse>
+    public class VerifyOtpCommandHandler(IUserRepository userRepository, IJwtService jwtService, IAuthTokenIssuer tokenIssuer, OtpAttemptCounter attemptCounter, OtpSettings otpSettings) : ICommandHandler<VerifyOtpCommand, AuthResponse>
     {
         public async Task<AuthResponse> Handle(VerifyOtpCommand request, CancellationToken cancellationToken)
         {

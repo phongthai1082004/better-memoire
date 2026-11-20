@@ -1,4 +1,4 @@
-﻿namespace Domain.Abstractions.Shared
+namespace Domain.Abstractions.Shared
 {
     /// <summary>Contract required by cursor (keyset) pagination.</summary>
     /// <typeparam name="TKey">Primary key type.</typeparam>

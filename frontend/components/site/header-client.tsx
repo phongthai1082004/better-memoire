@@ -45,12 +45,14 @@ export function HeaderClient({
 
   const links = user
     ? [
-        { href: "/", label: copy.home },
+        { href: "/studio", label: copy.studio },
         { href: "/account", label: copy.account },
       ]
     : isLanding
       ? landingLinks
       : [];
+
+  const startHref = user ? "/studio" : "/auth?mode=register";
 
   function isCurrentLink(href: string) {
     if (user) {
@@ -106,7 +108,7 @@ export function HeaderClient({
 
   return (
     <header className="sticky top-0 z-40 border-b border-line-soft bg-board-deep/90 backdrop-blur-md">
-      <div className="flex h-[78px] w-full items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
+      <div className="flex h-[96px] w-full items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
         <Brand />
 
         <nav aria-label="Primary" className="hidden items-center gap-7 xl:flex 2xl:gap-9">
@@ -126,8 +128,8 @@ export function HeaderClient({
                   link.href === focusedHref ||
                   (isCurrentLink(link.href) && !focusedHref)
                 }
-                insetX={20}
-                insetY={8}
+                insetX={24}
+                insetY={10}
               />
               <span className="relative z-10">{link.label}</span>
             </Link>
@@ -144,17 +146,17 @@ export function HeaderClient({
           ) : (
             <Link
               href="/auth"
-              className="btn btn-outline btn-sm hidden h-10 !border-line !text-chalk hover:!border-line hover:!bg-white/5 hover:!text-chalk sm:inline-flex"
+              className="btn btn-outline btn-sm hidden h-12 !border-line !text-chalk hover:!border-line hover:!bg-white/5 hover:!text-chalk sm:inline-flex"
             >
               {copy.signIn}
             </Link>
           )}
           <Link
-            href="/auth?mode=register"
+            href={startHref}
             className={buttonStyles({
               variant: "secondary",
               size: "sm",
-              className: "hidden h-10 md:inline-flex",
+              className: "hidden h-12 md:inline-flex",
             })}
           >
             {copy.start}
@@ -165,7 +167,7 @@ export function HeaderClient({
             aria-label={open ? copy.closeMenu : copy.openMenu}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="grid h-10 w-10 place-items-center border border-dashed border-line text-chalk transition-colors hover:border-yellow hover:text-yellow lg:hidden"
+            className="grid h-12 w-12 place-items-center border border-dashed border-line text-chalk transition-colors hover:border-yellow hover:text-yellow lg:hidden"
             style={{ borderRadius: "50% 46% 52% 48% / 48% 52% 46% 54%" }}
           >
             {open ? <X size={19} /> : <List size={19} />}
@@ -181,7 +183,7 @@ export function HeaderClient({
             animate={{ opacity: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-0 top-[78px] z-50 border-b border-line bg-board-deep px-5 pb-9 pt-3 lg:hidden"
+            className="fixed inset-x-0 top-[96px] z-50 border-b border-line bg-board-deep px-5 pb-9 pt-3 lg:hidden"
           >
             <nav aria-label="Mobile" className="flex flex-col">
               {links.map((link) => (
@@ -199,8 +201,8 @@ export function HeaderClient({
                       link.href === focusedHref ||
                       (isCurrentLink(link.href) && !focusedHref)
                     }
-                    insetX={18}
-                    insetY={10}
+                    insetX={20}
+                    insetY={12}
                   />
                   <span className="relative z-10">{link.label}</span>
                 </Link>
@@ -227,7 +229,7 @@ export function HeaderClient({
               )}
             </nav>
             <Link
-              href="/auth?mode=register"
+              href={startHref}
               onClick={() => setOpen(false)}
               className={buttonStyles({
                 size: "lg",

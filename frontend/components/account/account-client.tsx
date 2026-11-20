@@ -2,6 +2,7 @@
 "use client";
 
 import { PencilSimple, Plus, Trash } from "@phosphor-icons/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AccountSelect } from "@/components/account/account-select";
@@ -300,6 +301,11 @@ export function AccountClient({
           {copy.title}
         </h1>
         <p className="mt-4 max-w-xl text-body">{copy.intro}</p>
+        <div className="mt-6">
+          <Link href="/studio" className="btn btn-outline btn-sm">
+            Open studio
+          </Link>
+        </div>
 
         {profileError && !profile && (
           <p role="alert" className="mt-6 text-coral">

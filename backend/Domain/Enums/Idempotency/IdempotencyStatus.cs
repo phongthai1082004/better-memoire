@@ -1,4 +1,4 @@
-﻿namespace Domain.Enums.Idempotency
+namespace Domain.Enums.Idempotency
 {
     public enum IdempotencyStatus
     {

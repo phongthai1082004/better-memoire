@@ -1,4 +1,4 @@
-﻿using Domain.Abstractions.Shared;
+using Domain.Abstractions.Shared;
 
 namespace Domain.Abstractions.Repository.Common
 {
@@ -19,18 +19,10 @@ namespace Domain.Abstractions.Repository.Common
         Task<int> CountAsync(ISpecification<T>? spec = null, CancellationToken cancellationToken = default);
 
         /// <summary>Returns one page of entities using offset paging or cursor (keyset) paging.</summary>
-        Task<PagedResultBase<T>> GetListAsync(
-            PageRequest request,
-            ISpecification<T>? specification = null,
-            Func<T, (DateTimeOffset? CursorTime, string? CursorId)>? cursorSelector = null,
-            CancellationToken cancellationToken = default);
+        Task<PagedResultBase<T>> GetListAsync(PageRequest request, ISpecification<T>? specification = null, Func<T, (DateTimeOffset? CursorTime, string? CursorId)>? cursorSelector = null, CancellationToken cancellationToken = default);
 
         /// <summary>Returns one page of projected results (see <see cref="ISpecification{T,TResult}.Selector"/>).</summary>
-        Task<PagedResultBase<TResult>> GetListAsync<TResult>(
-            PageRequest request,
-            ISpecification<T, TResult> specification,
-            Func<TResult, (DateTimeOffset? CursorTime, string? CursorId)>? cursorSelector = null,
-            CancellationToken cancellationToken = default) where TResult : class, ICursorItem<TKey>;
+        Task<PagedResultBase<TResult>> GetListAsync<TResult>(PageRequest request, ISpecification<T, TResult> specification, Func<TResult, (DateTimeOffset? CursorTime, string? CursorId)>? cursorSelector = null, CancellationToken cancellationToken = default) where TResult : class, ICursorItem<TKey>;
 
         // Single Commands
 

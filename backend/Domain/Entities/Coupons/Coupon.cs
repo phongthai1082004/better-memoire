@@ -34,19 +34,7 @@ namespace Domain.Entities.Coupons
         {
         }
 
-        public Coupon(
-            string code,
-            DiscountType discountType,
-            int discountValue,
-            int minOrderAmount = 0,
-            MinOrderType minOrderType = MinOrderType.Value,
-            int? maxDiscountAmount = null,
-            int maxUsageCount = 0,
-            int maxUsagePerUser = 0,
-            bool firstOrderOnly = false,
-            DateTimeOffset? startsAt = null,
-            DateTimeOffset? expiresAt = null,
-            string? description = null)
+        public Coupon(string code, DiscountType discountType, int discountValue, int minOrderAmount = 0, MinOrderType minOrderType = MinOrderType.Value, int? maxDiscountAmount = null, int maxUsageCount = 0, int maxUsagePerUser = 0, bool firstOrderOnly = false, DateTimeOffset? startsAt = null, DateTimeOffset? expiresAt = null, string? description = null)
         {
             Code = code;
             DiscountType = discountType;
@@ -112,19 +100,7 @@ namespace Domain.Entities.Coupons
 
         public void Activate() => IsActive = true;
 
-        public void Update(
-            string code,
-            DiscountType discountType,
-            int discountValue,
-            int minOrderAmount,
-            MinOrderType minOrderType,
-            int? maxDiscountAmount,
-            int maxUsageCount,
-            int maxUsagePerUser,
-            bool firstOrderOnly,
-            DateTimeOffset? startsAt,
-            DateTimeOffset? expiresAt,
-            string? description)
+        public void Update(string code, DiscountType discountType, int discountValue, int minOrderAmount, MinOrderType minOrderType, int? maxDiscountAmount, int maxUsageCount, int maxUsagePerUser, bool firstOrderOnly, DateTimeOffset? startsAt, DateTimeOffset? expiresAt, string? description)
         {
             Code = code;
             DiscountType = discountType;

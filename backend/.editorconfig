@@ -1,0 +1,24 @@
+root = false
+
+[*.cs]
+indent_style = space
+indent_size = 4
+tab_width = 4
+end_of_line = crlf
+insert_final_newline = true
+charset = utf-8
+
+# Backend convention: signatures stay on one line up to 400 characters.
+max_line_length = 400
+
+# Keep braces on their own line for types and members.
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_between_query_expression_clauses = true
+
+# Usings
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
