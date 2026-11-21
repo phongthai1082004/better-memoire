@@ -1,6 +1,4 @@
-using Domain.Abstractions.Entities;
 using Domain.Abstractions.Repository.Common;
-using Domain.Abstractions.Shared;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Utils

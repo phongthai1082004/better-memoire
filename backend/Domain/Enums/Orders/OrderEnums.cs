@@ -23,7 +23,8 @@ namespace Domain.Enums.Orders
     public enum PaymentStatus
     {
         Unpaid = 0,
-        Paid = 1
+        PartiallyPaid = 1,
+        Paid = 2
     }
 
     public enum ReturnState

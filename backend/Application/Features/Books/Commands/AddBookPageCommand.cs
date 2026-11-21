@@ -13,8 +13,7 @@ namespace Application.Features.Books.Commands
     public class AddBookPageCommandHandler(IBookRepository bookRepository, ICurrentUserService currentUser)
         : ICommandHandler<AddBookPageCommand, BookPageResponse>
     {
-        private const string EmptyPage =
-            """{"schemaVersion":2,"background":"#f3f2ea","elements":[]}""";
+        private const string EmptyPage = """{"schemaVersion":2,"background":"#f3f2ea","elements":[]}""";
 
         public async Task<BookPageResponse> Handle(AddBookPageCommand request, CancellationToken cancellationToken)
         {
